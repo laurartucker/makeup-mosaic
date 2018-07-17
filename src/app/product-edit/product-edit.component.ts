@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.css'],
+  styleUrls: ['./product-edit.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ProductEditComponent implements OnInit {

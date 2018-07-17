@@ -9,51 +9,66 @@ import { ProductComponent } from './product/product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { BrandsComponent } from './brands/brands.component';
+import { HeaderComponent } from './header/header.component';
+import { MenuComponent } from './header/menu/menu.component';
+import { LoginComponent } from './header/login/login.component';
 
 const appRoutes: Routes = [
-  {
-    path: 'products',
-    component: ProductComponent,
-    data: { title: 'Product List' }
-  },
-  {
-    path: 'product-details/:id',
-    component: ProductDetailComponent,
-    data: { title: 'Product Details' }
-  },
-  {
-    path: 'product-create',
-    component: ProductCreateComponent,
-    data: { title: 'Create Product' }
-  },
-  {
-    path: 'product-edit/:id',
-    component: ProductEditComponent,
-    data: { title: 'Edit Product' }
-  },
-  { path: '',
-    redirectTo: '/products',
-    pathMatch: 'full'
-  }
+   {
+      path: 'products',
+      component: ProductComponent,
+      data: { title: 'Product List' }
+   },
+   {
+      path: 'product-details/:id',
+      component: ProductDetailComponent,
+      data: { title: 'Product Details' }
+   },
+   {
+      path: 'product-create',
+      component: ProductCreateComponent,
+      data: { title: 'Create Product' }
+   },
+   {
+      path: 'product-edit/:id',
+      component: ProductEditComponent,
+      data: { title: 'Edit Product' }
+   },
+   {
+      path:'brands',
+      component: BrandsComponent,
+      data: { title: 'Brands Available'}
+   },
+   {
+      path: '',
+      redirectTo: '/products',
+      pathMatch: 'full'
+   },
+
 ];
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductComponent,
-    ProductDetailComponent,
-    ProductCreateComponent,
-    ProductEditComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      ProductComponent,
+      ProductDetailComponent,
+      ProductCreateComponent,
+      ProductEditComponent,
+      BrandsComponent,
+      HeaderComponent,
+      MenuComponent,
+      LoginComponent
+   ],
+   imports: [
+      BrowserModule,
+      FormsModule,
+      HttpClientModule,
+      RouterModule.forRoot(
+         appRoutes,
+         { enableTracing: true } // <-- debugging purposes only
+      )
+   ],
+   providers: [],
+   bootstrap: [AppComponent]
 })
 export class AppModule { }

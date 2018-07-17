@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-product-create',
   templateUrl: './product-create.component.html',
-  styleUrls: ['./product-create.component.css'],
+  styleUrls: ['./product-create.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ProductCreateComponent implements OnInit {

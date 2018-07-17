@@ -1,20 +1,11 @@
-<div class="container">
-  <h1>{{ product.name }}</h1>
-  <div class="button-row">
-   <a color="primary" [routerLink]="['/products']">+</a>
-</div>
 <div>
    <h1>{{ product.name }}</h1>
-   <div *ngFor="let image of product.images">
-      <img src="{{image.url}}"/>
-      <img src="{{image.path}}"/>
-   </div>
-  
-</div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <a [routerLink]="['/product-edit', product._id]" class="btn btn-success">EDIT</a>
-    <button class="btn btn-danger" type="button" (click)="deleteProduct(product._id)">DELETE</button>
-  </div>
+
+   Brand: {{product.brand}} <br/>
+   Category: {{product.category}} <br/>
+   Sub Category: {{product.sub_category}} <br/>
+   Price: {{product.price}} <br/>
+   Affiliate Link {{product.affiliate_link}}
+
+
 </div>

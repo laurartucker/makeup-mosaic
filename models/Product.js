@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+
 var ProductSchema = new mongoose.Schema({
   website: String,
   category: String,
@@ -9,7 +10,8 @@ var ProductSchema = new mongoose.Schema({
   images: { url: String, path: String},
   path: String,
   price: String,
-  name: String
+  name: String,
+  _id: String
 });
 
 module.exports = mongoose.model('Product', ProductSchema);

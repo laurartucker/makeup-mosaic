@@ -1,0 +1,9 @@
+<h1>Product Brands</h1>
+
+<div>
+   <ul>
+      <li *ngFor="let brand of brands">
+         <a routerLink="/brand/{{brand._id}}">{{brand._id}}</a>
+      </li>
+   </ul>
+</div>

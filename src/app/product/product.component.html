@@ -1,23 +1,37 @@
 <div class="container">
-  <h1>Product List
-    <a [routerLink]="['/product-create']" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    </a>
-  </h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of products">
-        <td>{{ product.name }}</td>
-        <td>{{ product.category }}</td>
-        <td><a [routerLink]="['/product-details', product._id]">Show Detail</a></td>
-      </tr>
-    </tbody>
-  </table>
+   <h1>Product List
+      <a [routerLink]="['/product-create']" class="btn btn-default btn-lg">
+         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </a>
+   </h1>
+   <table class="table">
+      <thead>
+         <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Action</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let product of products">
+            <td>{{ product.name }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.sub_category}}</td>
+            <td>
+               <a [routerLink]="['/brand', product.brand]">{{ product.brand }}</a>
+            </td>
+            <td>
+               <a [routerLink]="['/product-details', product._id]">Show Detail</a>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+
+<div *ngFor="let product of products" class="image-mosaic">
+   <a [routerLink]="['/product-details', product._id]">
+      <div *ngFor="let image of product.images">
+         <img src="{{image.url}}" />
+      </div>
+   </a>
 </div>

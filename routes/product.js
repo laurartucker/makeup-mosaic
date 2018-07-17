@@ -4,43 +4,59 @@ var mongoose = require('mongoose');
 var Product = require('../models/Product.js');
 
 /* GET ALL PRODUCTS */
-router.get('/', function(req, res, next) {
-  Product.find(function (err, products) {
-    if (err) return next(err);
-    res.json(products);
-  }).limit(20);
+router.get('/', function (req, res, next) {
+   Product.find({ name: /palette/i }).exec(function (err, products) {
+      if (err) return next(err);
+      res.json(products);
+   });
+});
+
+router.get('/brands/:brand', function (req, res, next) {
+   Product.find({ brand: req.params.brand }).exec(function (err, products) {
+      if (err) return next(err);
+      res.json(products);
+   });
+});
+
+router.get('/getbrands', function (req, res, next) {
+   Product.aggregate().group({ _id: "$brand"}).sort({ _id: 1}).exec(function (err, products) {
+      if (err) return next(err);
+      res.json(products);
+   });
 });
 
 /* GET SINGLE PRODUCT BY ID */
-router.get('/:id', function(req, res, next) {
-  Product.findById(req.params.id, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+router.get('/:id', function (req, res, next) {
+   Product.find({ _id: ObjectId(req.params.id) }, function (err, post) {
+      console.log(req.params.id + "I reached here, ok??");
+      if (err) return next(err);
+      res.json(post);
+
+   });
 });
 
 /* SAVE PRODUCT */
-router.post('/', function(req, res, next) {
-  Product.create(req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+router.post('/', function (req, res, next) {
+   Product.create(req.body, function (err, post) {
+      if (err) return next(err);
+      res.json(post);
+   });
 });
 
 /* UPDATE PRODUCT */
-router.put('/:id', function(req, res, next) {
-  Product.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+router.put('/:id', function (req, res, next) {
+   Product.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+      if (err) return next(err);
+      res.json(post);
+   });
 });
 
 /* DELETE PRODUCT */
-router.delete('/:id', function(req, res, next) {
-  Product.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+router.delete('/:id', function (req, res, next) {
+   Product.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+      if (err) return next(err);
+      res.json(post);
+   });
 });
 
 module.exports = router;
