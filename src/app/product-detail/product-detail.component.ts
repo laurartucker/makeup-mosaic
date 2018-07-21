@@ -10,13 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit {
 
-   product = {};
+   products: any;
 
    constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
    ngOnInit() {
       this.http.get('/product/' + this.route.snapshot.params['id']).subscribe(data => {
-         this.product = data;
+         this.products = data;
       });
    }
 

@@ -1,5 +1,5 @@
 <div class="container">
-   <h1>Product List
+   <h1>Product List for {{brandTitle}}
       <a [routerLink]="['/product-create']" class="btn btn-default btn-lg">
          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
       </a>
@@ -21,7 +21,7 @@
                <a [routerLink]="['/brand', product.brand]">{{ product.brand }}</a>
             </td>
             <td>
-               <a [routerLink]="['/product-details', product._id]">More...</a>
+               <a [routerLink]="['/product-details', product._id]">Show Detail</a>
             </td>
          </tr>
       </tbody>

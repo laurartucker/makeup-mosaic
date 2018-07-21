@@ -1,4 +1,4 @@
-<div>
+<div *ngFor="let product of products">
    <h1>{{ product.name }}</h1>
 
    Brand: {{product.brand}} <br/>
@@ -6,6 +6,4 @@
    Sub Category: {{product.sub_category}} <br/>
    Price: {{product.price}} <br/>
    Affiliate Link {{product.affiliate_link}}
-
-
 </div>

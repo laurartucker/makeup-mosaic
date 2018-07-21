@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+
+import { Routing } from "./app.routing";
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
@@ -12,41 +13,11 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 import { BrandsComponent } from './brands/brands.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
-import { LoginComponent } from './header/login/login.component';
+import { ProductsByBrandComponent } from './products-by-brand/products-by-brand.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
-const appRoutes: Routes = [
-   {
-      path: 'products',
-      component: ProductComponent,
-      data: { title: 'Product List' }
-   },
-   {
-      path: 'product-details/:id',
-      component: ProductDetailComponent,
-      data: { title: 'Product Details' }
-   },
-   {
-      path: 'product-create',
-      component: ProductCreateComponent,
-      data: { title: 'Create Product' }
-   },
-   {
-      path: 'product-edit/:id',
-      component: ProductEditComponent,
-      data: { title: 'Edit Product' }
-   },
-   {
-      path:'brands',
-      component: BrandsComponent,
-      data: { title: 'Brands Available'}
-   },
-   {
-      path: '',
-      redirectTo: '/products',
-      pathMatch: 'full'
-   },
 
-];
 @NgModule({
    declarations: [
       AppComponent,
@@ -57,16 +28,15 @@ const appRoutes: Routes = [
       BrandsComponent,
       HeaderComponent,
       MenuComponent,
+      ProductsByBrandComponent,
+      RegisterComponent,
       LoginComponent
    ],
    imports: [
       BrowserModule,
       FormsModule,
       HttpClientModule,
-      RouterModule.forRoot(
-         appRoutes,
-         { enableTracing: true } // <-- debugging purposes only
-      )
+      Routing
    ],
    providers: [],
    bootstrap: [AppComponent]

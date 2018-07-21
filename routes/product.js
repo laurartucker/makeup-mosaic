@@ -5,10 +5,10 @@ var Product = require('../models/Product.js');
 
 /* GET ALL PRODUCTS */
 router.get('/', function (req, res, next) {
-   Product.find({ name: /palette/i }).exec(function (err, products) {
+   Product.find(function (err, products) {
       if (err) return next(err);
       res.json(products);
-   });
+   }).limit(200);
 });
 
 router.get('/brands/:brand', function (req, res, next) {
@@ -27,12 +27,13 @@ router.get('/getbrands', function (req, res, next) {
 
 /* GET SINGLE PRODUCT BY ID */
 router.get('/:id', function (req, res, next) {
-   Product.find({ _id: ObjectId(req.params.id) }, function (err, post) {
+   Product.find({ _id: mongoose.Types.ObjectId(req.params.id) }, function (err, post) {
       console.log(req.params.id + "I reached here, ok??");
       if (err) return next(err);
       res.json(post);
 
    });
+   console.log("Yeah and here?");
 });
 
 /* SAVE PRODUCT */
