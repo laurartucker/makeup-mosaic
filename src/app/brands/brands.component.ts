@@ -16,7 +16,7 @@ export class BrandsComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.http.get('/product/getbrands').subscribe(data => {
+    this.http.get('/product/getbrands/by-product-count').subscribe(data => {
       this.brands = data;
     });
   }

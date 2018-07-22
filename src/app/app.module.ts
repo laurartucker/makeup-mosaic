@@ -14,8 +14,8 @@ import { BrandsComponent } from './brands/brands.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { ProductsByBrandComponent } from './products-by-brand/products-by-brand.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './header/login/login.component';
+// import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -29,8 +29,8 @@ import { LoginComponent } from './login/login.component';
       HeaderComponent,
       MenuComponent,
       ProductsByBrandComponent,
-      RegisterComponent,
-      LoginComponent
+      LoginComponent,
+      //RegisterComponent,
    ],
    imports: [
       BrowserModule,

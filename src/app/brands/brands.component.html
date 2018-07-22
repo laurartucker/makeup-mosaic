@@ -1,9 +1,14 @@
 <h1>Product Brands</h1>
 
 <div>
-   <ul>
+   <div class="sorting">
+      <div>
+         Sort By: <a href="#">A-Z</a> | <a href="#">Most Products</a>
+      </div>
+   </div>
+   <ul class="brand-list">
       <li *ngFor="let brand of brands">
-         <a routerLink="/brands/{{brand._id}}">{{brand._id}}</a>
+         <a routerLink="/brands/{{brand._id}}">{{brand._id}} - {{brand.count}} - {{brand.$count}}</a>
       </li>
    </ul>
 </div>

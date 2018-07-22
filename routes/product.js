@@ -25,6 +25,15 @@ router.get('/getbrands', function (req, res, next) {
    });
 });
 
+router.get('/getbrands/by-product-count', function(req, res, next) {
+   
+   Product.aggregate().group({_id: "$brand", count: { $sum: 1}}).sort( { count: -1 }).exec(function (err, products) {
+      if (err) return next(err);
+      res.json(products);
+   });
+
+})
+
 /* GET SINGLE PRODUCT BY ID */
 router.get('/:id', function (req, res, next) {
    Product.find({ _id: mongoose.Types.ObjectId(req.params.id) }, function (err, post) {

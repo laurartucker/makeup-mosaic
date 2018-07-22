@@ -1,14 +1,12 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProductComponent } from './product/product.component';
-import { RegisterComponent } from './register/index';
-import { AuthGuard } from './_guards/index';
+// import { RegisterComponent } from './register/index';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { BrandsComponent } from './brands/brands.component';
 import { ProductsByBrandComponent } from './products-by-brand/products-by-brand.component';
-import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = [
@@ -42,9 +40,8 @@ const appRoutes: Routes = [
       component: ProductsByBrandComponent,
       data: { title: 'Viewing your favourite brand'}
    },
-   { path: '', component: ProductComponent, canActivate: [AuthGuard] },
-   { path: 'login', component: LoginComponent },
-   { path: 'register', component: RegisterComponent },
+   { path: '', component: ProductComponent },
+  // { path: 'register', component: RegisterComponent },
 
    // otherwise redirect to home
    { path: '**', redirectTo: '' }

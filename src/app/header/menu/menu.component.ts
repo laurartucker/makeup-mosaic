@@ -14,9 +14,7 @@ export class MenuComponent implements OnInit {
    constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
    ngOnInit() {
-      this.http.get('/product/getbrands').subscribe(data => {
-         this.brands = data;
-      });
+      
    }
 
 }
