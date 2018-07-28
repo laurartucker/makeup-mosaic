@@ -1,0 +1,14 @@
+
+.image-mosaic {
+   max-width: 150px; 
+   float: left;
+
+   img {
+      width: 100%;
+   }
+
+   span {
+      color: #555;
+      font-size: small;
+   }
+}

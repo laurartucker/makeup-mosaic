@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 import { Routing } from "./app.routing";
 
@@ -15,7 +16,12 @@ import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { ProductsByBrandComponent } from './products-by-brand/products-by-brand.component';
 import { LoginComponent } from './header/login/login.component';
-// import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './register/register.component';
+
+import { AlertComponent } from './_directives';
+import { AuthGuard } from './_guards';
+import { JwtInterceptor } from './_helpers';
+import { AlertService, AuthenticationService, UserService } from './_services';
 
 
 @NgModule({
@@ -30,15 +36,27 @@ import { LoginComponent } from './header/login/login.component';
       MenuComponent,
       ProductsByBrandComponent,
       LoginComponent,
-      //RegisterComponent,
+      RegisterComponent,
+      AlertComponent,
    ],
    imports: [
       BrowserModule,
       FormsModule,
       HttpClientModule,
-      Routing
+      Routing,
+      CommonModule
    ],
-   providers: [],
+   providers: [
+      AuthGuard,
+      AlertService,
+      AuthenticationService,
+      UserService,
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: JwtInterceptor,
+         multi: true
+      }
+   ],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

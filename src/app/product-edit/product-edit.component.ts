@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
 
 @Component({
   selector: 'app-product-edit',
@@ -19,14 +21,14 @@ export class ProductEditComponent implements OnInit {
   }
 
   getProduct(id) {
-    this.http.get('/product/'+id).subscribe(data => {
+    this.http.get(environment.apiUrl + '/product/'+id).subscribe(data => {
       this.product = data;
     });
   }
 
   updateProduct(id) {
     this.product.updated_date = Date.now();
-    this.http.put('/product/'+id, this.product)
+    this.http.put(environment.apiUrl + '/product/'+id, this.product)
       .subscribe(res => {
           let id = res['_id'];
           this.router.navigate(['/product-details', id]);

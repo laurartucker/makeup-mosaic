@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
    selector: 'app-products-by-brand',
@@ -16,7 +17,7 @@ export class ProductsByBrandComponent implements OnInit {
 
    ngOnInit() {
       this.brandTitle = this.route.snapshot.params["brand"];
-      this.http.get('/product/brands/' + this.brandTitle).subscribe(data => {
+      this.http.get(environment.apiUrl + '/product/brands/' + this.brandTitle).subscribe(data => {
          this.products = data;
          
       });

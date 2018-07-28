@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+
 
 @Component({
    selector: 'app-product-detail',
@@ -15,7 +17,7 @@ export class ProductDetailComponent implements OnInit {
    constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
    ngOnInit() {
-      this.http.get('/product/' + this.route.snapshot.params['id']).subscribe(data => {
+      this.http.get(environment.apiUrl + '/product/' + this.route.snapshot.params['id']).subscribe(data => {
          this.products = data;
       });
    }

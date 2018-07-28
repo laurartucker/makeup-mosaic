@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
 
 @Component({
   selector: 'app-product',
@@ -14,7 +16,7 @@ export class ProductComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get('/product').subscribe(data => {
+    this.http.get(environment.apiUrl + '/product').subscribe(data => {
       this.products = data;
     });
   }

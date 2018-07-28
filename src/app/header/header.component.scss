@@ -1,0 +1,22 @@
+
+
+.container {
+   .row {
+      .col-sm {
+         vertical-align: bottom;
+         width: 33%;
+         float: left;
+      }
+
+      .logo {
+         color: white;
+         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+         font-size: 40px;
+         span {
+            font-size: 80px;
+            font-style: none;
+
+         }
+      }
+   }
+}
