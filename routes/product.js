@@ -11,6 +11,7 @@ router.get('/', function (req, res, next) {
    }).limit(200);
 });
 
+/* GET ALL PRODUCTS FOR A GIVEN BRAND */
 router.get('/brands/:brand', function (req, res, next) {
    Product.find({ brand: req.params.brand }).exec(function (err, products) {
       if (err) return next(err);
@@ -18,6 +19,7 @@ router.get('/brands/:brand', function (req, res, next) {
    });
 });
 
+/* GET LIST OF BRANDS, IN ALPHABETICAL ORDER */
 router.get('/getbrands', function (req, res, next) {
    Product.aggregate().group({ _id: "$brand"}).sort({ _id: 1}).exec(function (err, products) {
       if (err) return next(err);
@@ -25,8 +27,8 @@ router.get('/getbrands', function (req, res, next) {
    });
 });
 
-router.get('/getbrands/by-product-count', function(req, res, next) {
-   
+/* GET LIST OF BRANDS WITH PRODUCT COUNT */
+router.get('/getbrands/by-product-count', function(req, res, next) {   
    Product.aggregate().group({_id: "$brand", count: { $sum: 1}}).sort( { count: -1 }).exec(function (err, products) {
       if (err) return next(err);
       res.json(products);

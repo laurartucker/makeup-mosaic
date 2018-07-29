@@ -3,5 +3,5 @@ export class User {
    password: String;
    firstName: String;
    lastName: String;
-   
+   registrationDate: Date;
 }

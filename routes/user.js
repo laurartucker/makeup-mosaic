@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = require('../models/User.js');
+var User = require('../models/User');
 
 /* GET ALL USERS */
 router.get('/', function (req, res, next) {
    User.find(function (err, users) {
-      if (err) 
+      if (err)
          return next(err);
       res.json(users);
    });
@@ -15,18 +15,19 @@ router.get('/', function (req, res, next) {
 /* GET SINGLE USER BY ID */
 router.get('/:id', function (req, res, next) {
    User.find({ _id: mongoose.Types.ObjectId(req.params.id) }, function (err, post) {
-      console.log(req.params.id + "I reached here, ok??");
       if (err) return next(err);
       res.json(post);
-
    });
-   console.log("Yeah and here?");
 });
 
-/* SAVE USER */
+/* CREATE USER */
 router.post('/', function (req, res, next) {
-   User.create(req.body, function (err, post) {
-      if (err) return next(err);
+   var newUser = new User(req.body);
+   newUser.registrationDate = Date.now();
+
+   User.create(newUser, function (err, post) {
+      if (err)
+         return next(err);
       res.json(post);
    });
 });
@@ -47,4 +48,20 @@ router.delete('/:id', function (req, res, next) {
    });
 });
 
-module.exports = router;
+/* VALIDATE LOGIN */
+router.post('/authenticate', function (req, res, next) {
+   User.find({ username: req.body.username, password: req.body.password }, function (err, user) {
+      if (err) return next(err);
+      
+
+      if (user) {
+         res.json(user);
+      } else {
+         // else return 400 bad request
+         
+      }
+   });
+   res.json(401, "Invalid username or password");
+});
+
+   module.exports = router;

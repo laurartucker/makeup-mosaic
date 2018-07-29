@@ -49,10 +49,8 @@ const appRoutes: Routes = [
    },
    { 
       path: '', 
-      component: ProductComponent,
-      canActivate: [AuthGuard]
+      component: ProductComponent
    },
-
    // otherwise redirect to home
    { path: '**', redirectTo: '' }
 

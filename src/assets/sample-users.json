@@ -1,0 +1,31 @@
+[
+   {
+      "username": "Sparklies",
+      "password": "hello",
+      "firstName": "Laura",
+      "lastName": "Tucker",
+      "registrationDate": [ "Saturday, July 28, 2018"]
+   }
+]
+
+[
+   {
+      "website": "sephora.com",
+      "category": "Makeup",
+      "sub_category": "Brushes & Applicators",
+      "brand": "SEPHORA COLLECTION",
+      "image_urls": [
+         "http://www.sephora.com/productimages/sku/s1508928-main-grid.jpg"
+      ],
+      "affiliate_link": "http://www.sephora.com/tools-of-the-trade-brush-set-P379559",
+      "images": [
+         {
+            "url": "http://www.sephora.com/productimages/sku/s1508928-main-grid.jpg",
+            "path": "full/4d08ebc93429d48ac88b8e38b4385c2ae97d2c86.jpg",
+            "checksum": "1f42183b4b42aa4223bc8d0c846121bd"
+         }
+      ],
+      "price": "$62.00",
+      "name": "Tools Of The Trade Brush Set"
+   }
+]
