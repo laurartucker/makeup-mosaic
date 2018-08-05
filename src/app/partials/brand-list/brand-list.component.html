@@ -1,0 +1,5 @@
+<ul class="brand-list">
+   <li *ngFor="let brand of brands">
+      <a routerLink="/brands/{{brand._id}}">{{brand._id | titlecase}}<span *ngIf="brand.count"> - {{brand.count}} - {{brand.$count}}</span></a>
+   </li>
+</ul>

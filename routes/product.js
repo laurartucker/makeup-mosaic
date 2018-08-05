@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 
 /* GET ALL PRODUCTS FOR A GIVEN BRAND */
 router.get('/brands/:brand', function (req, res, next) {
-   Product.find({ brand: req.params.brand }).exec(function (err, products) {
+   Product.find({ brand: req.params.brand }).sort({ category: 1}).sort({ sub_category: 1}).exec(function (err, products) {
       if (err) return next(err);
       res.json(products);
    });

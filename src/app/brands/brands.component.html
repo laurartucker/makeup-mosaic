@@ -3,12 +3,8 @@
 <div>
    <div class="sorting">
       <div>
-         Sort By: <a href="#">A-Z</a> | <a href="#">Most Products</a>
+         Sort By: <a routerLink="/brands/a-z">A-Z</a> | <a routerLink="/brands">Most Products</a>
       </div>
    </div>
-   <ul class="brand-list">
-      <li *ngFor="let brand of brands">
-         <a routerLink="/brands/{{brand._id}}">{{brand._id}} - {{brand.count}} - {{brand.$count}}</a>
-      </li>
-   </ul>
+   <app-brand-list></app-brand-list>
 </div>

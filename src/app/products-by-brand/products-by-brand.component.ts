@@ -19,8 +19,10 @@ export class ProductsByBrandComponent implements OnInit {
       this.brandTitle = this.route.snapshot.params["brand"];
       this.http.get(environment.apiUrl + '/product/brands/' + this.brandTitle).subscribe(data => {
          this.products = data;
-         
+
       });
    }
+
+
 
 }

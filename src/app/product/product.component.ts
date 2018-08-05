@@ -2,23 +2,24 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
+import { ProductService } from '../_services/product.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
-  encapsulation: ViewEncapsulation.None
+   selector: 'app-product',
+   templateUrl: './product.component.html',
+   styleUrls: ['./product.component.scss'],
+   encapsulation: ViewEncapsulation.None
 })
 export class ProductComponent implements OnInit {
 
-  products: any;
+   products: any;
 
-  constructor(private http: HttpClient) { }
+   constructor(private http: HttpClient, private productService: ProductService) { }
 
-  ngOnInit() {
-    this.http.get(environment.apiUrl + '/product').subscribe(data => {
-      this.products = data;
-    });
-  }
+   ngOnInit() {
+      this.productService.getAll().subscribe(data => {
+         this.products = data;
+      });
+   }
 
 }

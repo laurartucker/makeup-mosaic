@@ -7,10 +7,10 @@
 
    <div *ngFor="let product of products" class="image-mosaic">
       <a [routerLink]="['/product-details', product._id]">
-         <div *ngFor="let image of product.images">
+         <div *ngFor="let image of product.images" class="{{product.sub_category | formatCategory | lowercase}} {{product.category | formatCategory | lowercase}}">
             <img src="{{image.url}}" />
          </div>
-         <span>{{product.name}}</span>
+         <!-- <span>{{product.category |formatCategory| lowercase }}:{{product.sub_category |formatCategory| lowercase}}</span>  -->
       </a>
    </div>
 

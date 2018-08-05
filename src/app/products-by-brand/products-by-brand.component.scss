@@ -1,10 +1,15 @@
 
-.image-mosaic {
-   max-width: 150px; 
+.image-mosaic a div {
+   max-width: 200px;
+  // max-height: 200px;
    float: left;
+   display: block;
+   // overflow: hidden;
 
    img {
-      width: 100%;
+      max-width: 100%;
+      max-height: 250px;
+      position: relative;
    }
 
    span {
@@ -12,3 +17,51 @@
       font-size: small;
    }
 }
+
+// .removers {
+//    width: 50px;
+// }
+
+// .eye-makeup {
+//    width: 200px;
+// }
+
+// .brushes-applicators, .eyebrows, .eyeliner, .mascara {
+//    width: 100px;
+//    height: 250px;
+
+
+//    img {
+//       left: -25px;
+//       height: 100%;
+//    }
+// }
+
+// .lips, .lip {
+//    width: 125px;
+//    height: 200px;
+
+//    img {
+//       left: -25px;
+//       width: 200px;
+//    }
+// }
+
+// .cc-creams, .concealer, .bb-creams, .tinted-moisturiser, .primer, .foundation, .tools{
+//    width: 150px;
+//    height: 200px;
+
+//    img {
+//       left: -25px;
+//       width: 200px;
+//    }
+// }
+
+// .skincare, .bath-bodycare, .eyeshadows, .bath-shower, .blusher,  .bronzer, .powder, .highlighter, .fragrance{
+//    width: 200px;
+//    height: 200px;
+
+//    img {
+//       height: 100%;
+//    }
+// }

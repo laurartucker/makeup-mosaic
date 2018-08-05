@@ -21,8 +21,11 @@ import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor } from './_helpers';
-import { AlertService, AuthenticationService, UserService } from './_services';
+import { AlertService, AuthenticationService, UserService, ProductService } from './_services';
+import { AZComponent } from './brands/a-z/a-z.component';
+import { BrandListComponent } from './partials/brand-list/brand-list.component';
 
+import { FormatCategory } from './format-strings.pipe';
 
 @NgModule({
    declarations: [
@@ -38,6 +41,9 @@ import { AlertService, AuthenticationService, UserService } from './_services';
       LoginComponent,
       RegisterComponent,
       AlertComponent,
+      AZComponent,
+      BrandListComponent,
+      FormatCategory
    ],
    imports: [
       BrowserModule,
@@ -55,7 +61,8 @@ import { AlertService, AuthenticationService, UserService } from './_services';
          provide: HTTP_INTERCEPTORS,
          useClass: JwtInterceptor,
          multi: true
-      }
+      },
+      ProductService
    ],
    bootstrap: [AppComponent]
 })
