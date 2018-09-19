@@ -6,7 +6,8 @@ import { environment } from '../../environments/environment';
 @Component({
    selector: 'app-products-by-brand',
    templateUrl: './products-by-brand.component.html',
-   styleUrls: ['./products-by-brand.component.scss']
+   styleUrls: ['./products-by-brand.component.scss'],
+   
 })
 export class ProductsByBrandComponent implements OnInit {
 

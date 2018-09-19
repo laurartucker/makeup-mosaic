@@ -26,6 +26,9 @@ import { AZComponent } from './brands/a-z/a-z.component';
 import { BrandListComponent } from './partials/brand-list/brand-list.component';
 
 import { FormatCategory } from './format-strings.pipe';
+import { ProductListGridComponent } from './partials/product-list-grid/product-list-grid.component';
+import { ProductListTextComponent } from './partials/product-list-text/product-list-text.component';
+import { FeaturedProductsComponent } from './featured-products/featured-products.component';
 
 @NgModule({
    declarations: [
@@ -43,7 +46,10 @@ import { FormatCategory } from './format-strings.pipe';
       AlertComponent,
       AZComponent,
       BrandListComponent,
-      FormatCategory
+      FormatCategory,
+      ProductListGridComponent,
+      ProductListTextComponent,
+      FeaturedProductsComponent
    ],
    imports: [
       BrowserModule,

@@ -7,11 +7,24 @@
 
    .form-group {
       float: left;
+      padding: 10px 5px;
+
+      label {
+         float: left;
+      }
 
       input[text]{
          float: left;
          border: none;
-         
+      }
+
+      .button {
+         margin: 5px;
+         margin-left: 10px;
+      }
+
+      a {
+         color: white;
       }
    }
 }

@@ -19,12 +19,12 @@ const appRoutes: Routes = [
       data: { title: 'Product List' }
    },
    {
-      path: 'product-details/:id',
+      path: 'product/:id',
       component: ProductDetailComponent,
       data: { title: 'Product Details' }
    },
    {
-      path: 'product-create',
+      path: 'products/add',
       component: ProductCreateComponent,
       data: { title: 'Create Product' }
    },
@@ -49,7 +49,7 @@ const appRoutes: Routes = [
       data: { title: 'Brands Available - By Product Count'}
    },
    {
-      path:'brands/:brand',
+      path:'brand/:brand',
       component: ProductsByBrandComponent,
       data: { title: 'Viewing your favourite brand'}
    },

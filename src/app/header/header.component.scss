@@ -2,20 +2,29 @@
 
 .container {
    .row {
-      .col-sm {
+      .logo, .login, .menu {
          vertical-align: bottom;
-         width: 33%;
+         height: 100%;
+         padding: 5px;
          float: left;
+      }
+
+      .logo, .menu {
+         width: 30%;
+      }
+
+      .login {
+         width: 40%;
       }
 
       .logo {
          color: white;
          font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
          font-size: 40px;
+
          span {
             font-size: 80px;
             font-style: none;
-
          }
       }
    }

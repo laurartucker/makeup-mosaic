@@ -1,12 +1,12 @@
 <div class="container">
    <h1>Product List for {{brandTitle}}
-      <a [routerLink]="['/product-create']" class="btn btn-default btn-lg">
+      <a [routerLink]="['/products/add']" class="btn btn-default btn-lg">
          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
       </a>
    </h1>
 
    <div *ngFor="let product of products" class="image-mosaic">
-      <a [routerLink]="['/product-details', product._id]">
+      <a [routerLink]="['/product/', product._id]">
          <div *ngFor="let image of product.images" class="{{product.sub_category | formatCategory | lowercase}} {{product.category | formatCategory | lowercase}}">
             <img src="{{image.url}}" />
          </div>
