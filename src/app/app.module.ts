@@ -11,7 +11,6 @@ import { ProductComponent } from './product/product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
-import { BrandsComponent } from './brands/brands.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { ProductsByBrandComponent } from './products-by-brand/products-by-brand.component';
@@ -29,6 +28,8 @@ import { FormatCategory } from './format-strings.pipe';
 import { ProductListGridComponent } from './partials/product-list-grid/product-list-grid.component';
 import { ProductListTextComponent } from './partials/product-list-text/product-list-text.component';
 import { FeaturedProductsComponent } from './featured-products/featured-products.component';
+import { SortMenuComponent } from './brands/sort-menu/sort-menu.component';
+import { MostProductsComponent } from './brands/most-products/most-products.component';
 
 @NgModule({
    declarations: [
@@ -37,7 +38,6 @@ import { FeaturedProductsComponent } from './featured-products/featured-products
       ProductDetailComponent,
       ProductCreateComponent,
       ProductEditComponent,
-      BrandsComponent,
       HeaderComponent,
       MenuComponent,
       ProductsByBrandComponent,
@@ -49,7 +49,9 @@ import { FeaturedProductsComponent } from './featured-products/featured-products
       FormatCategory,
       ProductListGridComponent,
       ProductListTextComponent,
-      FeaturedProductsComponent
+      FeaturedProductsComponent,
+      SortMenuComponent,
+      MostProductsComponent
    ],
    imports: [
       BrowserModule,

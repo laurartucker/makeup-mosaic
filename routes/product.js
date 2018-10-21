@@ -20,8 +20,8 @@ router.get('/brands/:brand', function (req, res, next) {
 });
 
 /* GET LIST OF BRANDS, IN ALPHABETICAL ORDER */
-router.get('/getbrands', function (req, res, next) {
-   Product.aggregate().group({ _id: "$brand"}).sort({ _id: 1}).exec(function (err, products) {
+router.get('/getbrands/a-to-z', function (req, res, next) {
+   Product.aggregate().group({ _id: "$brand"}).sort({ "_id": 1}).exec(function (err, products) {
       if (err) return next(err);
       res.json(products);
    });
@@ -39,12 +39,11 @@ router.get('/getbrands/by-product-count', function(req, res, next) {
 /* GET SINGLE PRODUCT BY ID */
 router.get('/:id', function (req, res, next) {
    Product.find({ _id: mongoose.Types.ObjectId(req.params.id) }, function (err, post) {
-      console.log(req.params.id + "I reached here, ok??");
-      if (err) return next(err);
+      if (err) 
+         return next(err);
       res.json(post);
-
    });
-   console.log("Yeah and here?");
+
 });
 
 /* SAVE PRODUCT */

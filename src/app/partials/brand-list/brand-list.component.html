@@ -1,5 +1,8 @@
 <ul class="brand-list">
    <li *ngFor="let brand of brands">
-      <a routerLink="/brands/{{brand._id}}">{{brand._id | titlecase}}<span *ngIf="brand.count"> - {{brand.count}} - {{brand.$count}}</span></a>
+      <a routerLink="/brand/{{brand._id}}">
+         <span *ngIf="brand._id" >{{brand._id | titlecase}}</span><span *ngIf="!brand._id">None</span>
+         <span class="count" *ngIf="brand.count"> - {{brand.count}} products</span>
+      </a>
    </li>
 </ul>

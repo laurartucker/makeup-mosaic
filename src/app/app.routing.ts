@@ -5,11 +5,11 @@ import { ProductComponent } from './product/product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
-import { BrandsComponent } from './brands/brands.component';
 import { AZComponent } from './brands/a-z/a-z.component';
 import { ProductsByBrandComponent } from './products-by-brand/products-by-brand.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './_guards/index';
+import { MostProductsComponent } from './brands/most-products/most-products.component';
 
 
 const appRoutes: Routes = [
@@ -35,7 +35,7 @@ const appRoutes: Routes = [
    },
    {
       path:'brands',
-      component: BrandsComponent,
+      component: AZComponent,
       data: { title: 'Brands Available'}
    },
    {
@@ -45,7 +45,7 @@ const appRoutes: Routes = [
    },
    {
       path:'brands/by-count',
-      component: BrandsComponent,
+      component: MostProductsComponent,
       data: { title: 'Brands Available - By Product Count'}
    },
    {

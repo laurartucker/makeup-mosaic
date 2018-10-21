@@ -1,13 +1,16 @@
 <div *ngFor="let product of products">
-   <h1>{{ product.name }}</h1>
-
-   <div *ngFor="let image of product.images">
-      <img src="{{image.url}}" />
+   <div class="image-container">
+      <div *ngFor="let image of product.images">
+         <img src="{{image.url}}" />
+      </div>
    </div>
+   <div class="product-info">
+      <h1>{{ product.name }}</h1>
 
-   Brand: {{product.brand}}
-   <br/> Category: {{product.category}}
-   <br/> Sub Category: {{product.sub_category}}
-   <br/> Price: {{product.price}}
-   <br/> <a href="{{product.affiliate_link}}">Affiliate Link</a>
+      {{product.brand}}
+      <br /> Category: {{product.category}}
+      <br /> Sub Category: {{product.sub_category}}
+      <br /> Price: {{product.price}}
+      <br /> <a href="{{product.affiliate_link}}">Affiliate Link</a>
+   </div>
 </div>

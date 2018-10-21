@@ -9,7 +9,7 @@ export class ProductService {
    constructor(private http: HttpClient) { }
 
    getAllBrandsAtoZ(): any {
-      return this.http.get(environment.apiUrl + '/product/getbrands');
+      return this.http.get(environment.apiUrl + '/product/getbrands/a-to-z');
    }
 
    getAllBrandsByCount(): any {

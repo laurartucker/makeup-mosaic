@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
    next()
  })
 
-mongoose.connect('mongodb://localhost/makeup', { useMongoClient: true, promiseLibrary: require('bluebird') })
+mongoose.connect('mongodb://127.0.0.1:27017/makeup', { useMongoClient: true, promiseLibrary: require('bluebird') })
    .then(() => console.log('connection successful'))
    .catch((err) => console.error(err));
 

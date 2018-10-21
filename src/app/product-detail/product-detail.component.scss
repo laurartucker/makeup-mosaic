@@ -1,0 +1,19 @@
+
+.image-container {
+   width: 50%;
+   max-width: 500px;
+   float: left;
+   img {
+      max-width: 100%;
+   }
+}
+
+.product-info {
+   width: 50%;
+   float: right;
+
+   h1 {
+      font-size: large;
+      font-weight: bold;
+   }
+}
