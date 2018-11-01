@@ -6,11 +6,13 @@ var UserSchema = new mongoose.Schema(
       password: String,
       firstName: String,
       lastName: String,
+      productCollection: {  //Array of references to the products collection   
+         productId:  String
+      }
    },
    {
       timestamps: true
    });
 
 module.exports = mongoose.model('User', UserSchema);
-
 

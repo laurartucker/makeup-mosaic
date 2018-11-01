@@ -7,10 +7,13 @@
    <div class="product-info">
       <h1>{{ product.name }}</h1>
 
-      {{product.brand}}
+      <a routerLink="/brand/{{product.brand}}">{{product.brand}}</a>
       <br /> Category: {{product.category}}
       <br /> Sub Category: {{product.sub_category}}
       <br /> Price: {{product.price}}
       <br /> <a href="{{product.affiliate_link}}">Affiliate Link</a>
+
+      <br/><br/>
+      <a (click)="addProductToCollection()">Add me to your collection!</a>
    </div>
 </div>

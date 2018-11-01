@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
 
          if (this.loggedInUser.length > 0) {
             localStorage.setItem("loggedInUser", JSON.stringify(this.loggedInUser));
+            localStorage.setItem("username", this.model.username);
             this.isLoggedIn = true;
             this.errorMessage = "";
             //You might think it would make more sense to use the user object we just retrieved.  Well, it doesn't like it when I type the result so it's a User object.  It also didn't like it when I assumed the type because it didn't know it was a User.  Rendered fine on the browser, just VS Code complains.  That's too much complaining from everything so this is what it is. 
@@ -56,10 +57,16 @@ export class LoginComponent implements OnInit {
          }
          else {
             this.isLoggedIn = false;
-            this.errorMessage = "Invalid username or password";
+            this.errorMessage = "Something has gone wrong, please try again";
             this.loading = false;
             
          }
+      }, 
+      error => {
+         this.isLoggedIn = false;
+         this.errorMessage = "Invalid username or password";
+         this.loading = false;
+         console.log(error);
       });
       
    }

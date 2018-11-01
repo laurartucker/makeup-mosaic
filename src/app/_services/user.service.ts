@@ -28,5 +28,11 @@ export class UserService {
    delete(id: String) {
       return this.http.delete(environment.apiUrl + '/user/' + id);
    }
+
+   addProductToCollection(username: String, productId: String) {
+      return this.http.put(environment.apiUrl + '/user/add-to-collection/', { username: username, productId: productId });
+   }
+
+
 }
 

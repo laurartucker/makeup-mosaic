@@ -4,6 +4,7 @@
    text-align: right;
    text-align: bottom;
    height: 100%;
+   color: white;
 
    .form-group {
       float: left;
@@ -16,6 +17,7 @@
       input[text]{
          float: left;
          border: none;
+         color: black;
       }
 
       .button {
@@ -23,8 +25,10 @@
          margin-left: 10px;
       }
 
-      a {
-         color: white;
-      }
+      
    }
 }
+a, span {
+         color: white;
+         padding: 0 5px;
+      }

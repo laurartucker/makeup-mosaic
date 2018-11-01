@@ -32,36 +32,45 @@ router.post('/', function (req, res, next) {
    });
 });
 
-/* UPDATE USER */
-router.put('/:id', function (req, res, next) {
-   User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-      if (err) return next(err);
-      res.json(post);
-   });
-});
+// /* UPDATE USER */
+// router.put('/:id', function (req, res, next) {
+//    User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+//       if (err) return next(err);
+//       res.json(post);
+//    });
+// });
 
-/* DELETE USER */
-router.delete('/:id', function (req, res, next) {
-   User.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-      if (err) return next(err);
-      res.json(post);
-   });
-});
+// /* DELETE USER */
+// router.delete('/:id', function (req, res, next) {
+//    User.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+//       if (err) return next(err);
+//       res.json(post);
+//    });
+// });
 
 /* VALIDATE LOGIN */
 router.post('/authenticate', function (req, res, next) {
-   User.find({ username: req.body.username, password: req.body.password }, function (err, user) {
+   User.find({ username: req.body.username, password: req.body.password}, function (err, user) {
       if (err) return next(err);
-      
 
       if (user) {
          res.json(user);
-      } else {
-         // else return 400 bad request
-         
+      }
+      else
+         res.json(401, "Invalid username or password" + req.body.username + " | " + req.body.password);
+   });
+   
+});
+
+router.put('/add-to-collection/', function (req, res, next) {
+   console.log(req.body.username + req.body.productId);
+   User.update({username: req.body.username}, {$push: {productCollection: { productId: req.body.productId}}}, function(err, user) {
+      if (err) return next(err);
+
+      if (user) {
+         res.json(user);
       }
    });
-   res.json(401, "Invalid username or password");
 });
 
    module.exports = router;

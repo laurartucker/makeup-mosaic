@@ -30,6 +30,7 @@ import { ProductListTextComponent } from './partials/product-list-text/product-l
 import { FeaturedProductsComponent } from './featured-products/featured-products.component';
 import { SortMenuComponent } from './brands/sort-menu/sort-menu.component';
 import { MostProductsComponent } from './brands/most-products/most-products.component';
+import { StashComponent } from './stash/stash.component';
 
 @NgModule({
    declarations: [
@@ -51,7 +52,8 @@ import { MostProductsComponent } from './brands/most-products/most-products.comp
       ProductListTextComponent,
       FeaturedProductsComponent,
       SortMenuComponent,
-      MostProductsComponent
+      MostProductsComponent,
+      StashComponent
    ],
    imports: [
       BrowserModule,

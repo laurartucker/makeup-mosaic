@@ -10,8 +10,15 @@
          <div *ngFor="let image of product.images" class="{{product.sub_category | formatCategory | lowercase}} {{product.category | formatCategory | lowercase}}">
             <img src="{{image.url}}" />
          </div>
-         <!-- <span>{{product.category |formatCategory| lowercase }}:{{product.sub_category |formatCategory| lowercase}}</span>  -->
       </a>
+      <br />
+      <div class="description">
+         <a [routerLink]="['/brand/', product.brand]">
+            <strong>{{product.brand | uppercase}}</strong><br />
+         </a>
+         <a [routerLink]="['/product/', product._id]">
+            <span>{{product.name | titlecase}}</span>
+         </a>
+      </div>
    </div>
-
 </div>
