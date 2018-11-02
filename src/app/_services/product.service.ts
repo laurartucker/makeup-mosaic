@@ -19,5 +19,9 @@ export class ProductService {
    getAll(): any {
       return this.http.get(environment.apiUrl + '/product/');
    }
+
+   getAllProductsForUser(username: string): any {
+      return this.http.get(environment.apiUrl + '/product/stash/' + username);
+   }
 }
 

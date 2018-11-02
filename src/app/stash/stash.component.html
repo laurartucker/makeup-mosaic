@@ -1,3 +1,21 @@
-<p>
-  stash works!
-</p>
+<div class="container">
+   <h1>My Stash
+   </h1>
+
+   <div *ngFor="let product of products" class="image-mosaic">
+      <a [routerLink]="['/product/', product._id]">
+         <div *ngFor="let image of product.images" class="{{product.sub_category | formatCategory | lowercase}} {{product.category | formatCategory | lowercase}}">
+            <img src="{{image.url}}" />
+         </div>
+      </a>
+      <br />
+      <div class="description">
+         <a [routerLink]="['/brand/', product.brand]">
+            <strong>{{product.brand | uppercase}}</strong><br />
+         </a>
+         <a [routerLink]="['/product/', product._id]">
+            <span>{{product.name | titlecase}}</span>
+         </a>
+      </div>
+   </div>
+</div>

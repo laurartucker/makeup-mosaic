@@ -31,6 +31,7 @@ import { FeaturedProductsComponent } from './featured-products/featured-products
 import { SortMenuComponent } from './brands/sort-menu/sort-menu.component';
 import { MostProductsComponent } from './brands/most-products/most-products.component';
 import { StashComponent } from './stash/stash.component';
+import { ProductCardsComponent } from './partials/product-cards/product-cards.component';
 
 @NgModule({
    declarations: [
@@ -53,7 +54,8 @@ import { StashComponent } from './stash/stash.component';
       FeaturedProductsComponent,
       SortMenuComponent,
       MostProductsComponent,
-      StashComponent
+      StashComponent,
+      ProductCardsComponent
    ],
    imports: [
       BrowserModule,

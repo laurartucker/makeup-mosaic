@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
 
    ngOnInit() {
       this.isLoggedIn = this.authGuard.isLoggedIn();
+      if (this.isLoggedIn)
+         this.welcomeMessage = "Welcome, " + localStorage.getItem("username");
    }
 
    login() {
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit {
          this.loggedInUser = data;
 
          if (this.loggedInUser.length > 0) {
-            localStorage.setItem("loggedInUser", JSON.stringify(this.loggedInUser));
+            localStorage.setItem("currentUser", JSON.stringify(this.loggedInUser));
             localStorage.setItem("username", this.model.username);
             this.isLoggedIn = true;
             this.errorMessage = "";

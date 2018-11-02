@@ -7,7 +7,8 @@ var UserSchema = new mongoose.Schema(
       firstName: String,
       lastName: String,
       productCollection: {  //Array of references to the products collection   
-         productId:  String
+         productId:  String,
+         type: Array
       }
    },
    {

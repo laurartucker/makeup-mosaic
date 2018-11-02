@@ -21,7 +21,7 @@ export class ProductDetailComponent implements OnInit {
    ngOnInit() {
       this.http.get(environment.apiUrl + '/product/' + this.route.snapshot.params['id']).subscribe(data => {
          this.products = data;
-         this.productId = this.products[0]._id;
+         this.productId = this.products[0].name;
       });
    }
 

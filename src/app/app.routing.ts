@@ -10,6 +10,7 @@ import { ProductsByBrandComponent } from './products-by-brand/products-by-brand.
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './_guards/index';
 import { MostProductsComponent } from './brands/most-products/most-products.component';
+import { StashComponent } from './stash/stash.component';
 
 
 const appRoutes: Routes = [
@@ -57,6 +58,16 @@ const appRoutes: Routes = [
       path: 'register',
       component: RegisterComponent,
       data: { title: 'Register with Makeup Mosaic'}
+   },
+   {
+      path: 'stash',
+      component: StashComponent,
+      data: { title: "Aww yeah lookit all my stuff"}
+   },
+   {
+      path: 'stash/:username',
+      component: StashComponent,
+      data: { title: "Aww yeah lookit all my stuff"}
    },
    { 
       path: '', 

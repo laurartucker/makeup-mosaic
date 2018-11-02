@@ -63,7 +63,6 @@ router.post('/authenticate', function (req, res, next) {
 });
 
 router.put('/add-to-collection/', function (req, res, next) {
-   console.log(req.body.username + req.body.productId);
    User.update({username: req.body.username}, {$push: {productCollection: { productId: req.body.productId}}}, function(err, user) {
       if (err) return next(err);
 
@@ -73,4 +72,4 @@ router.put('/add-to-collection/', function (req, res, next) {
    });
 });
 
-   module.exports = router;
+module.exports = router;
