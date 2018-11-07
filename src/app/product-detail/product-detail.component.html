@@ -1,4 +1,4 @@
-<div *ngFor="let product of products">
+<div  *ngIf="product">
    <div class="image-container">
       <div *ngFor="let image of product.images">
          <img src="{{image.url}}" />
@@ -13,7 +13,23 @@
       <br /> Price: {{product.price}}
       <br /> <a href="{{product.affiliate_link}}">Affiliate Link</a>
 
-      <br/><br/>
-      <a (click)="addProductToCollection()">Add me to your collection!</a>
+      <br /><br />
+      <a (click)="addProductToCollection()">+ Add to your collection</a>
    </div>
+
+   <h2 class="clear"> Other {{product.brand | titlecase }} Products in This Category: </h2>
+   <div class="related-products category">
+      <div class="container">
+         <app-small-product-cards [products]="relatedProductsCategory"></app-small-product-cards>
+      </div>
+   </div>
+
+   <div class="related-products clear">
+      <h2> Other {{product.brand | titlecase }} Products: </h2>
+      <div class="container">
+
+         <app-small-product-cards [products]="relatedProducts"></app-small-product-cards>
+      </div>
+   </div>
+
 </div>

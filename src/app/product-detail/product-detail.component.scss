@@ -4,7 +4,7 @@
    max-width: 500px;
    float: left;
    img {
-      max-width: 100%;
+      min-width: 80%;
    }
 }
 
@@ -15,5 +15,19 @@
    h1 {
       font-size: large;
       font-weight: bold;
+   }
+}
+
+.related-products, .clear {
+   clear: both;
+}
+
+.related-products {
+   width: 80vw;
+   height: 250px;
+   overflow: scroll;
+
+   .container {
+      width: 3000px;
    }
 }

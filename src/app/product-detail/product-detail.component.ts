@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { UserService } from '../_services/user.service';
-import { forEach } from '@angular/router/src/utils/collection';
+import { ProductService } from '../_services/product.service';
 
 @Component({
    selector: 'app-product-detail',
@@ -13,16 +13,35 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class ProductDetailComponent implements OnInit {
 
-   products: any;
+   product: any;
    productId: any;
+   relatedProducts: any;
+   addChar: any;
+   relatedProductsCategory: any;
 
-   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private userService: UserService) { }
+   constructor(private router: Router, 
+               private route: ActivatedRoute, 
+               private http: HttpClient,
+               private userService: UserService,
+               private productService: ProductService) 
+               { }
+
 
    ngOnInit() {
-      this.http.get(environment.apiUrl + '/product/' + this.route.snapshot.params['id']).subscribe(data => {
-         this.products = data;
-         this.productId = this.products[0].name;
+      this.productService.getProductById(this.route.snapshot.params['id']).subscribe(data => {
+         this.product = data;
+         this.productId = this.product._id;
+         
+         this.productService.getProductsByBrand(this.product.brand).subscribe(data => {
+            this.relatedProducts = data;
+         })
+         
+         this.productService.getProductsByCategory(this.product.sub_category).subscribe(data => {
+            this.relatedProductsCategory = data; 
+         })
       });
+
+      
    }
 
    deleteProduct(id) {
@@ -36,7 +55,9 @@ export class ProductDetailComponent implements OnInit {
    }
 
    addProductToCollection() {
-         this.userService.addProductToCollection(localStorage.getItem("username"), this.productId).subscribe();
+         this.userService.addProductToCollection(localStorage.getItem("username"), this.productId).subscribe(
+
+         );
    }
 
 }

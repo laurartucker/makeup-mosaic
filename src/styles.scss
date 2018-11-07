@@ -4,6 +4,11 @@ header {
    height: 100px;
 }
 
+h2 {
+   font-size: 15pt;
+   padding: 30px 5px 5px 0;
+}
+
 a {
    text-decoration: none;
    font-weight: bold;
@@ -11,7 +16,7 @@ a {
 }
 
 
-.container {
+.content-container {
    width: 100vw;
 }
 
@@ -21,3 +26,12 @@ a {
    color: black;
 }
 
+.sidebar {
+   float: left;
+   width: 20%;
+}
+
+.content {
+   width: 80%;
+   float: left;
+}

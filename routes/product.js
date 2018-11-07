@@ -14,11 +14,20 @@ router.get('/', function (req, res, next) {
 
 /* GET ALL PRODUCTS FOR A GIVEN BRAND */
 router.get('/brands/:brand', function (req, res, next) {
-   Product.find({ brand: req.params.brand }).sort({ category: 1 }).sort({ sub_category: 1 }).exec(function (err, products) {
+   Product.find({ brand: req.params.brand }).sort({ category: 1 }).sort({ sub_category: 1 }).limit(15).exec(function (err, products) {
       if (err) return next(err);
       res.json(products);
    });
 });
+
+/* GET ALL PRODUCTS FOR A GIVEN CATEGORY */
+router.get('/category/:category', function (req, res, next) {
+   Product.find({ sub_category: req.params.category }).sort({ name: 1 }).limit(15).exec(function (err, products) {
+      if (err) return next(err);
+      res.json(products);
+   });
+});
+
 
 /* GET LIST OF BRANDS, IN ALPHABETICAL ORDER */
 router.get('/getbrands/a-to-z', function (req, res, next) {
@@ -44,38 +53,23 @@ router.get('/stash/:username', function (req, res, next) {
          console.log(err);
          return next(err)
       };
-      console.log(user.productCollection.length);
 
       let arr = user.productCollection.map(ele => new mongoose.Types.ObjectId(ele.productId));
-      let products = [];
 
-      console.log(arr);
+      Product.find({ _id: { $in: arr } }).exec(function (err, products) {
+         if (err) return next(err);
 
-     // for (var i = 0; i < arr.length; i++) {
-         Product.find({ _id: { $in: arr} }).exec(function (err, products) {
-            if (err) return next(err);
-            
-            res.json(products);
-         });
-     // }
-      // console.log(products);
-      // res.json(products);
-      // console.log(arr + " " + arr.length);
-
-      // Product.find({ _id: { $in: arr } }).exec(function (err, products) {
-      //    if (err) return next(err);
-      //    console.log(arr.length);
-      //    
-      // });
+         res.json(products);
+      });
    });
 })
 
 /* GET SINGLE PRODUCT BY ID */
 router.get('/:id', function (req, res, next) {
-   Product.find({ _id: mongoose.Types.ObjectId(req.params.id) }, function (err, post) {
+   Product.findOne({ _id: mongoose.Types.ObjectId(req.params.id) }, function (err, product) {
       if (err)
          return next(err);
-      res.json(post);
+      res.json(product);
    });
 
 });

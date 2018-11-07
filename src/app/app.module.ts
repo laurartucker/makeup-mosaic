@@ -25,13 +25,13 @@ import { AZComponent } from './brands/a-z/a-z.component';
 import { BrandListComponent } from './partials/brand-list/brand-list.component';
 
 import { FormatCategory } from './format-strings.pipe';
-import { ProductListGridComponent } from './partials/product-list-grid/product-list-grid.component';
-import { ProductListTextComponent } from './partials/product-list-text/product-list-text.component';
-import { FeaturedProductsComponent } from './featured-products/featured-products.component';
-import { SortMenuComponent } from './brands/sort-menu/sort-menu.component';
+import { SortMenuComponent } from './brands/partials/sort-menu/sort-menu.component';
 import { MostProductsComponent } from './brands/most-products/most-products.component';
 import { StashComponent } from './stash/stash.component';
 import { ProductCardsComponent } from './partials/product-cards/product-cards.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { AddComponent } from './looks/add/add.component';
+import { SmallProductCardsComponent } from './partials/small-product-cards/small-product-cards.component';
 
 @NgModule({
    declarations: [
@@ -49,13 +49,13 @@ import { ProductCardsComponent } from './partials/product-cards/product-cards.co
       AZComponent,
       BrandListComponent,
       FormatCategory,
-      ProductListGridComponent,
-      ProductListTextComponent,
-      FeaturedProductsComponent,
       SortMenuComponent,
       MostProductsComponent,
       StashComponent,
-      ProductCardsComponent
+      ProductCardsComponent,
+      SidebarComponent,
+      AddComponent,
+      SmallProductCardsComponent
    ],
    imports: [
       BrowserModule,

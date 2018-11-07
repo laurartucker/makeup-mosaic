@@ -1,0 +1,22 @@
+<div *ngFor="let product of products" class="image-mosaic">
+   <div *ngIf="product.images">
+      <a [routerLink]="['/product/', product._id]" *ngFor="let image of product.images" class="{{product.sub_category | formatCategory | lowercase}} {{product.category | formatCategory | lowercase}}">
+         <img src="{{image.url}}" />
+      </a>
+   </div>
+   <div *ngIf="!product.images">
+      <a [routerLink]="['/product/', product._id]" >
+         <img src="../../../assets/images/no-image.jpg" />
+      </a>
+   </div>
+   <br />
+   <div class="description">
+
+      <a [routerLink]="['/product/', product._id]">
+         <span>{{product.name | titlecase}}</span>
+      </a>
+   </div>
+   <div class="add-product">
+      <a (click)="addProductToCollection(product._id)">+</a>
+   </div>
+</div>

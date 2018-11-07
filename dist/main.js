@@ -583,6 +583,18 @@ var ProductService = (function () {
     ProductService.prototype.getAllProductsForUser = function (username) {
         return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl + '/product/stash/' + username);
     };
+    ProductService.prototype.getProductById = function (id) {
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl + '/product/' + id);
+    };
+    ProductService.prototype.getProductsByBrand = function (brand) {
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl + '/product/brands/' + brand);
+    };
+    ProductService.prototype.getProductsByBrandAndCategory = function (brand, category) {
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl + '/product/brands/', { params: { brand: brand, category: category } });
+    };
+    ProductService.prototype.getProductsByCategory = function (category) {
+        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl + '/product/category/' + category);
+    };
     ProductService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
@@ -659,7 +671,7 @@ var UserService = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n   <app-header></app-header>\n</header>\n<div class=\"content-container\">\n   <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<header>\n   <app-header></app-header>\n</header>\n<div class=\"content-container\">\n   <div class=\"sidebar\">\n   <app-sidebar></app-sidebar>\n</div>\n<div class=\"content\">\n   <router-outlet></router-outlet>\n   </div>\n</div>\n"
 
 /***/ }),
 
@@ -743,18 +755,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _brands_a_z_a_z_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./brands/a-z/a-z.component */ "./src/app/brands/a-z/a-z.component.ts");
 /* harmony import */ var _partials_brand_list_brand_list_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./partials/brand-list/brand-list.component */ "./src/app/partials/brand-list/brand-list.component.ts");
 /* harmony import */ var _format_strings_pipe__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./format-strings.pipe */ "./src/app/format-strings.pipe.ts");
-/* harmony import */ var _partials_product_list_grid_product_list_grid_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./partials/product-list-grid/product-list-grid.component */ "./src/app/partials/product-list-grid/product-list-grid.component.ts");
-/* harmony import */ var _partials_product_list_text_product_list_text_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./partials/product-list-text/product-list-text.component */ "./src/app/partials/product-list-text/product-list-text.component.ts");
-/* harmony import */ var _featured_products_featured_products_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./featured-products/featured-products.component */ "./src/app/featured-products/featured-products.component.ts");
-/* harmony import */ var _brands_sort_menu_sort_menu_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./brands/sort-menu/sort-menu.component */ "./src/app/brands/sort-menu/sort-menu.component.ts");
-/* harmony import */ var _brands_most_products_most_products_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./brands/most-products/most-products.component */ "./src/app/brands/most-products/most-products.component.ts");
-/* harmony import */ var _stash_stash_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./stash/stash.component */ "./src/app/stash/stash.component.ts");
+/* harmony import */ var _brands_partials_sort_menu_sort_menu_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./brands/partials/sort-menu/sort-menu.component */ "./src/app/brands/partials/sort-menu/sort-menu.component.ts");
+/* harmony import */ var _brands_most_products_most_products_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./brands/most-products/most-products.component */ "./src/app/brands/most-products/most-products.component.ts");
+/* harmony import */ var _stash_stash_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./stash/stash.component */ "./src/app/stash/stash.component.ts");
+/* harmony import */ var _partials_product_cards_product_cards_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./partials/product-cards/product-cards.component */ "./src/app/partials/product-cards/product-cards.component.ts");
+/* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./sidebar/sidebar.component */ "./src/app/sidebar/sidebar.component.ts");
+/* harmony import */ var _looks_add_add_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./looks/add/add.component */ "./src/app/looks/add/add.component.ts");
+/* harmony import */ var _partials_small_product_cards_small_product_cards_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./partials/small-product-cards/small-product-cards.component */ "./src/app/partials/small-product-cards/small-product-cards.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -804,12 +818,13 @@ var AppModule = (function () {
                 _brands_a_z_a_z_component__WEBPACK_IMPORTED_MODULE_20__["AZComponent"],
                 _partials_brand_list_brand_list_component__WEBPACK_IMPORTED_MODULE_21__["BrandListComponent"],
                 _format_strings_pipe__WEBPACK_IMPORTED_MODULE_22__["FormatCategory"],
-                _partials_product_list_grid_product_list_grid_component__WEBPACK_IMPORTED_MODULE_23__["ProductListGridComponent"],
-                _partials_product_list_text_product_list_text_component__WEBPACK_IMPORTED_MODULE_24__["ProductListTextComponent"],
-                _featured_products_featured_products_component__WEBPACK_IMPORTED_MODULE_25__["FeaturedProductsComponent"],
-                _brands_sort_menu_sort_menu_component__WEBPACK_IMPORTED_MODULE_26__["SortMenuComponent"],
-                _brands_most_products_most_products_component__WEBPACK_IMPORTED_MODULE_27__["MostProductsComponent"],
-                _stash_stash_component__WEBPACK_IMPORTED_MODULE_28__["StashComponent"]
+                _brands_partials_sort_menu_sort_menu_component__WEBPACK_IMPORTED_MODULE_23__["SortMenuComponent"],
+                _brands_most_products_most_products_component__WEBPACK_IMPORTED_MODULE_24__["MostProductsComponent"],
+                _stash_stash_component__WEBPACK_IMPORTED_MODULE_25__["StashComponent"],
+                _partials_product_cards_product_cards_component__WEBPACK_IMPORTED_MODULE_26__["ProductCardsComponent"],
+                _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_27__["SidebarComponent"],
+                _looks_add_add_component__WEBPACK_IMPORTED_MODULE_28__["AddComponent"],
+                _partials_small_product_cards_small_product_cards_component__WEBPACK_IMPORTED_MODULE_29__["SmallProductCardsComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -1090,10 +1105,10 @@ var MostProductsComponent = (function () {
 
 /***/ }),
 
-/***/ "./src/app/brands/sort-menu/sort-menu.component.html":
-/*!***********************************************************!*\
-  !*** ./src/app/brands/sort-menu/sort-menu.component.html ***!
-  \***********************************************************/
+/***/ "./src/app/brands/partials/sort-menu/sort-menu.component.html":
+/*!********************************************************************!*\
+  !*** ./src/app/brands/partials/sort-menu/sort-menu.component.html ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1101,21 +1116,21 @@ module.exports = "<div class=\"sorting\">\n   <div>\n      Sort By: <a routerLin
 
 /***/ }),
 
-/***/ "./src/app/brands/sort-menu/sort-menu.component.scss":
-/*!***********************************************************!*\
-  !*** ./src/app/brands/sort-menu/sort-menu.component.scss ***!
-  \***********************************************************/
+/***/ "./src/app/brands/partials/sort-menu/sort-menu.component.scss":
+/*!********************************************************************!*\
+  !*** ./src/app/brands/partials/sort-menu/sort-menu.component.scss ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2JyYW5kcy9zb3J0LW1lbnUvc29ydC1tZW51LmNvbXBvbmVudC5zY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2JyYW5kcy9wYXJ0aWFscy9zb3J0LW1lbnUvc29ydC1tZW51LmNvbXBvbmVudC5zY3NzIn0= */"
 
 /***/ }),
 
-/***/ "./src/app/brands/sort-menu/sort-menu.component.ts":
-/*!*********************************************************!*\
-  !*** ./src/app/brands/sort-menu/sort-menu.component.ts ***!
-  \*********************************************************/
+/***/ "./src/app/brands/partials/sort-menu/sort-menu.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/brands/partials/sort-menu/sort-menu.component.ts ***!
+  \******************************************************************/
 /*! exports provided: SortMenuComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1141,75 +1156,12 @@ var SortMenuComponent = (function () {
     SortMenuComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-sort-menu',
-            template: __webpack_require__(/*! ./sort-menu.component.html */ "./src/app/brands/sort-menu/sort-menu.component.html"),
-            styles: [__webpack_require__(/*! ./sort-menu.component.scss */ "./src/app/brands/sort-menu/sort-menu.component.scss")]
+            template: __webpack_require__(/*! ./sort-menu.component.html */ "./src/app/brands/partials/sort-menu/sort-menu.component.html"),
+            styles: [__webpack_require__(/*! ./sort-menu.component.scss */ "./src/app/brands/partials/sort-menu/sort-menu.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], SortMenuComponent);
     return SortMenuComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/featured-products/featured-products.component.html":
-/*!********************************************************************!*\
-  !*** ./src/app/featured-products/featured-products.component.html ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  featured-products works!\n</p>\n"
-
-/***/ }),
-
-/***/ "./src/app/featured-products/featured-products.component.scss":
-/*!********************************************************************!*\
-  !*** ./src/app/featured-products/featured-products.component.scss ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2ZlYXR1cmVkLXByb2R1Y3RzL2ZlYXR1cmVkLXByb2R1Y3RzLmNvbXBvbmVudC5zY3NzIn0= */"
-
-/***/ }),
-
-/***/ "./src/app/featured-products/featured-products.component.ts":
-/*!******************************************************************!*\
-  !*** ./src/app/featured-products/featured-products.component.ts ***!
-  \******************************************************************/
-/*! exports provided: FeaturedProductsComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FeaturedProductsComponent", function() { return FeaturedProductsComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var FeaturedProductsComponent = (function () {
-    function FeaturedProductsComponent() {
-    }
-    FeaturedProductsComponent.prototype.ngOnInit = function () {
-    };
-    FeaturedProductsComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-featured-products',
-            template: __webpack_require__(/*! ./featured-products.component.html */ "./src/app/featured-products/featured-products.component.html"),
-            styles: [__webpack_require__(/*! ./featured-products.component.scss */ "./src/app/featured-products/featured-products.component.scss")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], FeaturedProductsComponent);
-    return FeaturedProductsComponent;
 }());
 
 
@@ -1518,6 +1470,69 @@ var MenuComponent = (function () {
 
 /***/ }),
 
+/***/ "./src/app/looks/add/add.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/looks/add/add.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  add works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/looks/add/add.component.scss":
+/*!**********************************************!*\
+  !*** ./src/app/looks/add/add.component.scss ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvb2tzL2FkZC9hZGQuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/looks/add/add.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/looks/add/add.component.ts ***!
+  \********************************************/
+/*! exports provided: AddComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddComponent", function() { return AddComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AddComponent = (function () {
+    function AddComponent() {
+    }
+    AddComponent.prototype.ngOnInit = function () {
+    };
+    AddComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-add',
+            template: __webpack_require__(/*! ./add.component.html */ "./src/app/looks/add/add.component.html"),
+            styles: [__webpack_require__(/*! ./add.component.scss */ "./src/app/looks/add/add.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AddComponent);
+    return AddComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/partials/brand-list/brand-list.component.html":
 /*!***************************************************************!*\
   !*** ./src/app/partials/brand-list/brand-list.component.html ***!
@@ -1594,38 +1609,38 @@ var BrandListComponent = (function () {
 
 /***/ }),
 
-/***/ "./src/app/partials/product-list-grid/product-list-grid.component.html":
-/*!*****************************************************************************!*\
-  !*** ./src/app/partials/product-list-grid/product-list-grid.component.html ***!
-  \*****************************************************************************/
+/***/ "./src/app/partials/product-cards/product-cards.component.html":
+/*!*********************************************************************!*\
+  !*** ./src/app/partials/product-cards/product-cards.component.html ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  product-list-grid works!\n</p>\n"
+module.exports = "<div *ngFor=\"let product of products\" class=\"image-mosaic\">\n   <a [routerLink]=\"['/product/', product._id]\">\n      <div *ngFor=\"let image of product.images\" class=\"{{product.sub_category | formatCategory | lowercase}} {{product.category | formatCategory | lowercase}}\">\n         <img src=\"{{image.url}}\" />\n      </div>\n   </a>\n   <br />\n   <div class=\"description\">\n      <a [routerLink]=\"['/brand/', product.brand]\">\n         <strong>{{product.brand | uppercase}}</strong><br />\n      </a>\n      <a [routerLink]=\"['/product/', product._id]\">\n         <span>{{product.name | titlecase}}</span>\n      </a>\n   </div>\n</div>"
 
 /***/ }),
 
-/***/ "./src/app/partials/product-list-grid/product-list-grid.component.scss":
-/*!*****************************************************************************!*\
-  !*** ./src/app/partials/product-list-grid/product-list-grid.component.scss ***!
-  \*****************************************************************************/
+/***/ "./src/app/partials/product-cards/product-cards.component.scss":
+/*!*********************************************************************!*\
+  !*** ./src/app/partials/product-cards/product-cards.component.scss ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhcnRpYWxzL3Byb2R1Y3QtbGlzdC1ncmlkL3Byb2R1Y3QtbGlzdC1ncmlkLmNvbXBvbmVudC5zY3NzIn0= */"
+module.exports = ".image-mosaic {\n  width: 270px;\n  float: left;\n  display: block;\n  overflow: hidden;\n  position: relative;\n  margin: 10px;\n  padding: 10px;\n  background-color: white;\n  border-radius: 4px;\n  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);\n}\n.image-mosaic img {\n  max-width: 100%;\n  max-height: 500px;\n  position: relative;\n  display: block;\n  margin: 0 auto;\n}\n.image-mosaic span {\n  color: #555;\n  font-size: small;\n}\n.image-mosaic .description {\n  position: absolute;\n  width: 100%;\n  min-height: 50px;\n  text-align: center;\n  bottom: 5px;\n  left: 0;\n  background-color: white;\n  opacity: 0.8;\n  padding: 5px;\n}\n.image-mosaic:hover {\n  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9sYXVyYXR1Y2tlci9EZXZlbG9wbWVudC9tYWtldXAtbW9zYWljL21ha2V1cC1tb3NhaWMvc3JjL2FwcC9wYXJ0aWFscy9wcm9kdWN0LWNhcmRzL3Byb2R1Y3QtY2FyZHMuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3BhcnRpYWxzL3Byb2R1Y3QtY2FyZHMvcHJvZHVjdC1jYXJkcy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNHLGFBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsbUJBQUE7RUFDQSxhQUFBO0VBQ0EsY0FBQTtFQUNBLHdCQUFBO0VBQ0EsbUJBQUE7RUFDQSwyRUFBQTtDQ0FGO0FER0U7RUFDRyxnQkFBQTtFQUNBLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxlQUFBO0VBQ0EsZUFBQTtDQ0RMO0FESUU7RUFDRyxZQUFBO0VBQ0EsaUJBQUE7Q0NGTDtBREtFO0VBQ0csbUJBQUE7RUFDQSxZQUFBO0VBQ0EsaUJBQUE7RUFDQSxtQkFBQTtFQUNBLFlBQUE7RUFDQSxRQUFBO0VBQ0Esd0JBQUE7RUFDQSxhQUFBO0VBQ0EsYUFBQTtDQ0hMO0FET0Q7RUFDRyw0Q0FBQTtDQ0pGIiwiZmlsZSI6InNyYy9hcHAvcGFydGlhbHMvcHJvZHVjdC1jYXJkcy9wcm9kdWN0LWNhcmRzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4uaW1hZ2UtbW9zYWljICB7XG4gICB3aWR0aDogMjcwcHg7XG4gICBmbG9hdDogbGVmdDtcbiAgIGRpc3BsYXk6IGJsb2NrO1xuICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgIG1hcmdpbjogMTBweDtcbiAgIHBhZGRpbmc6IDEwcHg7XG4gICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgIGJveC1zaGFkb3c6IDAgMTlweCAzOHB4IHJnYmEoYmxhY2ssIDAuMyksIDAgMTVweCAxMnB4IHJnYmEoYmxhY2ssIDAuMik7XG4gICBcblxuICAgaW1nIHtcbiAgICAgIG1heC13aWR0aDogMTAwJTtcbiAgICAgIG1heC1oZWlnaHQ6IDUwMHB4O1xuICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgICAgZGlzcGxheTogYmxvY2s7XG4gICAgICBtYXJnaW46IDAgYXV0bztcbiAgIH1cblxuICAgc3BhbiB7XG4gICAgICBjb2xvcjogIzU1NTtcbiAgICAgIGZvbnQtc2l6ZTogc21hbGw7XG4gICB9XG5cbiAgIC5kZXNjcmlwdGlvbiB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICB3aWR0aDogMTAwJTtcbiAgICAgIG1pbi1oZWlnaHQ6IDUwcHg7XG4gICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICBib3R0b206IDVweDtcbiAgICAgIGxlZnQ6IDA7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICAgIG9wYWNpdHk6IDAuODtcbiAgICAgIHBhZGRpbmc6IDVweDtcbiAgIH1cbn1cblxuLmltYWdlLW1vc2FpYzpob3ZlciB7XG4gICBib3gtc2hhZG93OiAwIDhweCAxNnB4IDAgcmdiYSgwLDAsMCwwLjIpO1xufVxuXG4vLyAucmVtb3ZlcnMge1xuLy8gICAgd2lkdGg6IDUwcHg7XG4vLyB9XG5cbi8vIC5leWUtbWFrZXVwIHtcbi8vICAgIHdpZHRoOiAyMDBweDtcbi8vIH1cblxuLy8gLmJydXNoZXMtYXBwbGljYXRvcnMsIC5leWVicm93cywgLmV5ZWxpbmVyLCAubWFzY2FyYSB7XG4vLyAgICB3aWR0aDogMTAwcHg7XG4vLyAgICBoZWlnaHQ6IDI1MHB4O1xuXG5cbi8vICAgIGltZyB7XG4vLyAgICAgICBsZWZ0OiAtMjVweDtcbi8vICAgICAgIGhlaWdodDogMTAwJTtcbi8vICAgIH1cbi8vIH1cblxuLy8gLmxpcHMsIC5saXAge1xuLy8gICAgd2lkdGg6IDEyNXB4O1xuLy8gICAgaGVpZ2h0OiAyMDBweDtcblxuLy8gICAgaW1nIHtcbi8vICAgICAgIGxlZnQ6IC0yNXB4O1xuLy8gICAgICAgd2lkdGg6IDIwMHB4O1xuLy8gICAgfVxuLy8gfVxuXG4vLyAuY2MtY3JlYW1zLCAuY29uY2VhbGVyLCAuYmItY3JlYW1zLCAudGludGVkLW1vaXN0dXJpc2VyLCAucHJpbWVyLCAuZm91bmRhdGlvbiwgLnRvb2xze1xuLy8gICAgd2lkdGg6IDE1MHB4O1xuLy8gICAgaGVpZ2h0OiAyMDBweDtcblxuLy8gICAgaW1nIHtcbi8vICAgICAgIGxlZnQ6IC0yNXB4O1xuLy8gICAgICAgd2lkdGg6IDIwMHB4O1xuLy8gICAgfVxuLy8gfVxuXG4vLyAuc2tpbmNhcmUsIC5iYXRoLWJvZHljYXJlLCAuZXllc2hhZG93cywgLmJhdGgtc2hvd2VyLCAuYmx1c2hlciwgIC5icm9uemVyLCAucG93ZGVyLCAuaGlnaGxpZ2h0ZXIsIC5mcmFncmFuY2V7XG4vLyAgICB3aWR0aDogMjAwcHg7XG4vLyAgICBoZWlnaHQ6IDIwMHB4O1xuXG4vLyAgICBpbWcge1xuLy8gICAgICAgaGVpZ2h0OiAxMDAlO1xuLy8gICAgfVxuLy8gfSIsIi5pbWFnZS1tb3NhaWMge1xuICB3aWR0aDogMjcwcHg7XG4gIGZsb2F0OiBsZWZ0O1xuICBkaXNwbGF5OiBibG9jaztcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBtYXJnaW46IDEwcHg7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIGJveC1zaGFkb3c6IDAgMTlweCAzOHB4IHJnYmEoMCwgMCwgMCwgMC4zKSwgMCAxNXB4IDEycHggcmdiYSgwLCAwLCAwLCAwLjIpO1xufVxuLmltYWdlLW1vc2FpYyBpbWcge1xuICBtYXgtd2lkdGg6IDEwMCU7XG4gIG1heC1oZWlnaHQ6IDUwMHB4O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBtYXJnaW46IDAgYXV0bztcbn1cbi5pbWFnZS1tb3NhaWMgc3BhbiB7XG4gIGNvbG9yOiAjNTU1O1xuICBmb250LXNpemU6IHNtYWxsO1xufVxuLmltYWdlLW1vc2FpYyAuZGVzY3JpcHRpb24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAxMDAlO1xuICBtaW4taGVpZ2h0OiA1MHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGJvdHRvbTogNXB4O1xuICBsZWZ0OiAwO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgb3BhY2l0eTogMC44O1xuICBwYWRkaW5nOiA1cHg7XG59XG5cbi5pbWFnZS1tb3NhaWM6aG92ZXIge1xuICBib3gtc2hhZG93OiAwIDhweCAxNnB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpO1xufSJdfQ== */"
 
 /***/ }),
 
-/***/ "./src/app/partials/product-list-grid/product-list-grid.component.ts":
-/*!***************************************************************************!*\
-  !*** ./src/app/partials/product-list-grid/product-list-grid.component.ts ***!
-  \***************************************************************************/
-/*! exports provided: ProductListGridComponent */
+/***/ "./src/app/partials/product-cards/product-cards.component.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/partials/product-cards/product-cards.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: ProductCardsComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductListGridComponent", function() { return ProductListGridComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductCardsComponent", function() { return ProductCardsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1637,59 +1652,64 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ProductListGridComponent = (function () {
-    function ProductListGridComponent() {
+var ProductCardsComponent = (function () {
+    function ProductCardsComponent() {
     }
-    ProductListGridComponent.prototype.ngOnInit = function () {
+    ProductCardsComponent.prototype.ngOnInit = function () {
     };
-    ProductListGridComponent = __decorate([
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], ProductCardsComponent.prototype, "products", void 0);
+    ProductCardsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-product-list-grid',
-            template: __webpack_require__(/*! ./product-list-grid.component.html */ "./src/app/partials/product-list-grid/product-list-grid.component.html"),
-            styles: [__webpack_require__(/*! ./product-list-grid.component.scss */ "./src/app/partials/product-list-grid/product-list-grid.component.scss")]
+            selector: 'app-product-cards',
+            template: __webpack_require__(/*! ./product-cards.component.html */ "./src/app/partials/product-cards/product-cards.component.html"),
+            styles: [__webpack_require__(/*! ./product-cards.component.scss */ "./src/app/partials/product-cards/product-cards.component.scss")]
         }),
         __metadata("design:paramtypes", [])
-    ], ProductListGridComponent);
-    return ProductListGridComponent;
+    ], ProductCardsComponent);
+    return ProductCardsComponent;
 }());
 
 
 
 /***/ }),
 
-/***/ "./src/app/partials/product-list-text/product-list-text.component.html":
-/*!*****************************************************************************!*\
-  !*** ./src/app/partials/product-list-text/product-list-text.component.html ***!
-  \*****************************************************************************/
+/***/ "./src/app/partials/small-product-cards/small-product-cards.component.html":
+/*!*********************************************************************************!*\
+  !*** ./src/app/partials/small-product-cards/small-product-cards.component.html ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  product-list-text works!\n</p>\n"
+module.exports = "<div *ngFor=\"let product of products\" class=\"image-mosaic\">\n   <a [routerLink]=\"['/product/', product._id]\" *ngFor=\"let image of product.images\" class=\"{{product.sub_category | formatCategory | lowercase}} {{product.category | formatCategory | lowercase}}\">\n      <img src=\"{{image.url}}\" />\n   </a>\n   <br />\n   <div class=\"description\">\n      \n      <a [routerLink]=\"['/product/', product._id]\">\n         <span>{{product.name | titlecase}}</span>\n      </a>\n   </div>\n   <div class=\"add-product\">\n      <a (click)=\"addProductToCollection(product._id)\">+</a>\n   </div>\n</div>"
 
 /***/ }),
 
-/***/ "./src/app/partials/product-list-text/product-list-text.component.scss":
-/*!*****************************************************************************!*\
-  !*** ./src/app/partials/product-list-text/product-list-text.component.scss ***!
-  \*****************************************************************************/
+/***/ "./src/app/partials/small-product-cards/small-product-cards.component.scss":
+/*!*********************************************************************************!*\
+  !*** ./src/app/partials/small-product-cards/small-product-cards.component.scss ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhcnRpYWxzL3Byb2R1Y3QtbGlzdC10ZXh0L3Byb2R1Y3QtbGlzdC10ZXh0LmNvbXBvbmVudC5zY3NzIn0= */"
+module.exports = ".image-mosaic {\n  height: 220px;\n  min-width: 120px;\n  float: left;\n  display: block;\n  overflow: hidden;\n  position: relative;\n  margin: 10px;\n  padding: 10px;\n  background-color: white;\n  border-radius: 4px;\n  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);\n}\n.image-mosaic img {\n  max-width: 100%;\n  max-height: 100%;\n  position: relative;\n  display: block;\n  margin: 0 auto;\n}\n.image-mosaic span {\n  color: #555;\n  font-size: small;\n}\n.image-mosaic .description {\n  position: absolute;\n  width: 100%;\n  min-height: 50px;\n  text-align: center;\n  bottom: 5px;\n  left: 0;\n  background-color: white;\n  opacity: 0.8;\n}\n.image-mosaic .description a {\n  padding: 2px;\n  line-height: 10px;\n  font-size: 10px;\n}\n.image-mosaic:hover {\n  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);\n}\n.add-product {\n  display: block;\n  position: absolute;\n  top: 90px;\n}\n.add-product a {\n  font-size: 30px;\n  color: indigo;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9sYXVyYXR1Y2tlci9EZXZlbG9wbWVudC9tYWtldXAtbW9zYWljL21ha2V1cC1tb3NhaWMvc3JjL2FwcC9wYXJ0aWFscy9zbWFsbC1wcm9kdWN0LWNhcmRzL3NtYWxsLXByb2R1Y3QtY2FyZHMuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3BhcnRpYWxzL3NtYWxsLXByb2R1Y3QtY2FyZHMvc21hbGwtcHJvZHVjdC1jYXJkcy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNHLGNBQUE7RUFDQSxpQkFBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxtQkFBQTtFQUNBLGFBQUE7RUFDQSxjQUFBO0VBQ0Esd0JBQUE7RUFDQSxtQkFBQTtFQUNBLDJFQUFBO0NDQUY7QURFRTtFQUNHLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxtQkFBQTtFQUNBLGVBQUE7RUFDQSxlQUFBO0NDQUw7QURHRTtFQUNHLFlBQUE7RUFDQSxpQkFBQTtDQ0RMO0FESUU7RUFDRyxtQkFBQTtFQUNBLFlBQUE7RUFDQSxpQkFBQTtFQUNBLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLFFBQUE7RUFDQSx3QkFBQTtFQUNBLGFBQUE7Q0NGTDtBREdLO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0JBQUE7Q0NETDtBRE1EO0VBQ0csNENBQUE7Q0NIRjtBRE9EO0VBQ0csZUFBQTtFQUNBLG1CQUFBO0VBQ0EsVUFBQTtDQ0pGO0FETUU7RUFDRyxnQkFBQTtFQUNBLGNBQUE7Q0NKTCIsImZpbGUiOiJzcmMvYXBwL3BhcnRpYWxzL3NtYWxsLXByb2R1Y3QtY2FyZHMvc21hbGwtcHJvZHVjdC1jYXJkcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLmltYWdlLW1vc2FpYyAge1xuICAgaGVpZ2h0OiAyMjBweDtcbiAgIG1pbi13aWR0aDogMTIwcHg7XG4gICBmbG9hdDogbGVmdDtcbiAgIGRpc3BsYXk6IGJsb2NrO1xuICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgIG1hcmdpbjogMTBweDtcbiAgIHBhZGRpbmc6IDEwcHg7XG4gICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgIGJveC1zaGFkb3c6IDAgMTlweCAzOHB4IHJnYmEoYmxhY2ssIDAuMyksIDAgMTVweCAxMnB4IHJnYmEoYmxhY2ssIDAuMik7XG5cbiAgIGltZyB7XG4gICAgICBtYXgtd2lkdGg6IDEwMCU7XG4gICAgICBtYXgtaGVpZ2h0OiAxMDAlO1xuICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgICAgZGlzcGxheTogYmxvY2s7XG4gICAgICBtYXJnaW46IDAgYXV0bztcbiAgIH1cblxuICAgc3BhbiB7XG4gICAgICBjb2xvcjogIzU1NTtcbiAgICAgIGZvbnQtc2l6ZTogc21hbGw7XG4gICB9XG5cbiAgIC5kZXNjcmlwdGlvbiB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICB3aWR0aDogMTAwJTtcbiAgICAgIG1pbi1oZWlnaHQ6IDUwcHg7XG4gICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICBib3R0b206IDVweDtcbiAgICAgIGxlZnQ6IDA7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICAgIG9wYWNpdHk6IDAuODtcbiAgICAgIGEge1xuICAgICAgcGFkZGluZzogMnB4O1xuICAgICAgbGluZS1oZWlnaHQ6IDEwcHg7XG4gICAgICBmb250LXNpemU6IDEwcHg7XG4gICAgICB9XG4gICB9XG59XG5cbi5pbWFnZS1tb3NhaWM6aG92ZXIge1xuICAgYm94LXNoYWRvdzogMCA4cHggMTZweCAwIHJnYmEoMCwwLDAsMC4yKTtcbn1cblxuXG4uYWRkLXByb2R1Y3Qge1xuICAgZGlzcGxheTogYmxvY2s7XG4gICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICB0b3A6IDkwcHg7IFxuXG4gICBhIHtcbiAgICAgIGZvbnQtc2l6ZTogMzBweDtcbiAgICAgIGNvbG9yOiBpbmRpZ287XG4gICB9XG59XG5cbiIsIi5pbWFnZS1tb3NhaWMge1xuICBoZWlnaHQ6IDIyMHB4O1xuICBtaW4td2lkdGg6IDEyMHB4O1xuICBmbG9hdDogbGVmdDtcbiAgZGlzcGxheTogYmxvY2s7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbWFyZ2luOiAxMHB4O1xuICBwYWRkaW5nOiAxMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgYm9yZGVyLXJhZGl1czogNHB4O1xuICBib3gtc2hhZG93OiAwIDE5cHggMzhweCByZ2JhKDAsIDAsIDAsIDAuMyksIDAgMTVweCAxMnB4IHJnYmEoMCwgMCwgMCwgMC4yKTtcbn1cbi5pbWFnZS1tb3NhaWMgaW1nIHtcbiAgbWF4LXdpZHRoOiAxMDAlO1xuICBtYXgtaGVpZ2h0OiAxMDAlO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBtYXJnaW46IDAgYXV0bztcbn1cbi5pbWFnZS1tb3NhaWMgc3BhbiB7XG4gIGNvbG9yOiAjNTU1O1xuICBmb250LXNpemU6IHNtYWxsO1xufVxuLmltYWdlLW1vc2FpYyAuZGVzY3JpcHRpb24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAxMDAlO1xuICBtaW4taGVpZ2h0OiA1MHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGJvdHRvbTogNXB4O1xuICBsZWZ0OiAwO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgb3BhY2l0eTogMC44O1xufVxuLmltYWdlLW1vc2FpYyAuZGVzY3JpcHRpb24gYSB7XG4gIHBhZGRpbmc6IDJweDtcbiAgbGluZS1oZWlnaHQ6IDEwcHg7XG4gIGZvbnQtc2l6ZTogMTBweDtcbn1cblxuLmltYWdlLW1vc2FpYzpob3ZlciB7XG4gIGJveC1zaGFkb3c6IDAgOHB4IDE2cHggMCByZ2JhKDAsIDAsIDAsIDAuMik7XG59XG5cbi5hZGQtcHJvZHVjdCB7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogOTBweDtcbn1cbi5hZGQtcHJvZHVjdCBhIHtcbiAgZm9udC1zaXplOiAzMHB4O1xuICBjb2xvcjogaW5kaWdvO1xufSJdfQ== */"
 
 /***/ }),
 
-/***/ "./src/app/partials/product-list-text/product-list-text.component.ts":
-/*!***************************************************************************!*\
-  !*** ./src/app/partials/product-list-text/product-list-text.component.ts ***!
-  \***************************************************************************/
-/*! exports provided: ProductListTextComponent */
+/***/ "./src/app/partials/small-product-cards/small-product-cards.component.ts":
+/*!*******************************************************************************!*\
+  !*** ./src/app/partials/small-product-cards/small-product-cards.component.ts ***!
+  \*******************************************************************************/
+/*! exports provided: SmallProductCardsComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductListTextComponent", function() { return ProductListTextComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SmallProductCardsComponent", function() { return SmallProductCardsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../_services/user.service */ "./src/app/_services/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1700,20 +1720,29 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ProductListTextComponent = (function () {
-    function ProductListTextComponent() {
+
+var SmallProductCardsComponent = (function () {
+    function SmallProductCardsComponent(userService) {
+        this.userService = userService;
     }
-    ProductListTextComponent.prototype.ngOnInit = function () {
+    SmallProductCardsComponent.prototype.ngOnInit = function () {
     };
-    ProductListTextComponent = __decorate([
+    SmallProductCardsComponent.prototype.addProductToCollection = function (id) {
+        this.userService.addProductToCollection(localStorage.getItem("username"), id).subscribe();
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], SmallProductCardsComponent.prototype, "products", void 0);
+    SmallProductCardsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-product-list-text',
-            template: __webpack_require__(/*! ./product-list-text.component.html */ "./src/app/partials/product-list-text/product-list-text.component.html"),
-            styles: [__webpack_require__(/*! ./product-list-text.component.scss */ "./src/app/partials/product-list-text/product-list-text.component.scss")]
+            selector: 'app-small-product-cards',
+            template: __webpack_require__(/*! ./small-product-cards.component.html */ "./src/app/partials/small-product-cards/small-product-cards.component.html"),
+            styles: [__webpack_require__(/*! ./small-product-cards.component.scss */ "./src/app/partials/small-product-cards/small-product-cards.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
-    ], ProductListTextComponent);
-    return ProductListTextComponent;
+        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]])
+    ], SmallProductCardsComponent);
+    return SmallProductCardsComponent;
 }());
 
 
@@ -1808,7 +1837,7 @@ var ProductCreateComponent = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor=\"let product of products\">\n   <div class=\"image-container\">\n      <div *ngFor=\"let image of product.images\">\n         <img src=\"{{image.url}}\" />\n      </div>\n   </div>\n   <div class=\"product-info\">\n      <h1>{{ product.name }}</h1>\n\n      <a routerLink=\"/brand/{{product.brand}}\">{{product.brand}}</a>\n      <br /> Category: {{product.category}}\n      <br /> Sub Category: {{product.sub_category}}\n      <br /> Price: {{product.price}}\n      <br /> <a href=\"{{product.affiliate_link}}\">Affiliate Link</a>\n\n      <br/><br/>\n      <a (click)=\"addProductToCollection()\">Add me to your collection!</a>\n   </div>\n</div>"
+module.exports = "<div>\n   <div class=\"image-container\">\n      <div *ngFor=\"let image of product.images\">\n         <img src=\"{{image.url}}\" />\n      </div>\n   </div>\n   <div class=\"product-info\">\n      <h1>{{ product.name }}</h1>\n\n      <a routerLink=\"/brand/{{product.brand}}\">{{product.brand}}</a>\n      <br /> Category: {{product.category}}\n      <br /> Sub Category: {{product.sub_category}}\n      <br /> Price: {{product.price}}\n      <br /> <a href=\"{{product.affiliate_link}}\">Affiliate Link</a>\n\n      <br/><br/>\n      <a (click)=\"addProductToCollection()\">+ Add to your collection</a>\n   </div>\n\n   <div class=\"related-products-category clear\">\n      <h2> Other {{product.brand | titlecase }} Products in This Category: </h2>\n      <app-small-product-cards [products]=\"relatedProductsCategory\"></app-small-product-cards>\n   </div>\n\n   <div class=\"related-products\">\n      <h2> Other {{product.brand | titlecase }} Products: </h2>\n      <app-small-product-cards [products]=\"relatedProducts\"></app-small-product-cards>\n   </div>\n</div>"
 
 /***/ }),
 
@@ -1819,7 +1848,7 @@ module.exports = "<div *ngFor=\"let product of products\">\n   <div class=\"imag
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".image-container {\n  width: 30%;\n  max-width: 500px;\n  float: left;\n}\n.image-container img {\n  max-width: 100%;\n}\n.product-info {\n  width: 70%;\n  float: right;\n}\n.product-info h1 {\n  font-size: large;\n  font-weight: bold;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9sYXVyYXR1Y2tlci9EZXZlbG9wbWVudC9tYWtldXAtbW9zYWljL21ha2V1cC1tb3NhaWMvc3JjL2FwcC9wcm9kdWN0LWRldGFpbC9wcm9kdWN0LWRldGFpbC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcHJvZHVjdC1kZXRhaWwvcHJvZHVjdC1kZXRhaWwuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRyxXQUFBO0VBQ0EsaUJBQUE7RUFDQSxZQUFBO0NDQUY7QURDRTtFQUNHLGdCQUFBO0NDQ0w7QURHRDtFQUNHLFdBQUE7RUFDQSxhQUFBO0NDQUY7QURFRTtFQUNHLGlCQUFBO0VBQ0Esa0JBQUE7Q0NBTCIsImZpbGUiOiJzcmMvYXBwL3Byb2R1Y3QtZGV0YWlsL3Byb2R1Y3QtZGV0YWlsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4uaW1hZ2UtY29udGFpbmVyIHtcbiAgIHdpZHRoOiAzMCU7XG4gICBtYXgtd2lkdGg6IDUwMHB4O1xuICAgZmxvYXQ6IGxlZnQ7XG4gICBpbWcge1xuICAgICAgbWF4LXdpZHRoOiAxMDAlO1xuICAgfVxufVxuXG4ucHJvZHVjdC1pbmZvIHtcbiAgIHdpZHRoOiA3MCU7XG4gICBmbG9hdDogcmlnaHQ7XG5cbiAgIGgxIHtcbiAgICAgIGZvbnQtc2l6ZTogbGFyZ2U7XG4gICAgICBmb250LXdlaWdodDogYm9sZDtcbiAgIH1cbn0iLCIuaW1hZ2UtY29udGFpbmVyIHtcbiAgd2lkdGg6IDMwJTtcbiAgbWF4LXdpZHRoOiA1MDBweDtcbiAgZmxvYXQ6IGxlZnQ7XG59XG4uaW1hZ2UtY29udGFpbmVyIGltZyB7XG4gIG1heC13aWR0aDogMTAwJTtcbn1cblxuLnByb2R1Y3QtaW5mbyB7XG4gIHdpZHRoOiA3MCU7XG4gIGZsb2F0OiByaWdodDtcbn1cbi5wcm9kdWN0LWluZm8gaDEge1xuICBmb250LXNpemU6IGxhcmdlO1xuICBmb250LXdlaWdodDogYm9sZDtcbn0iXX0= */"
+module.exports = ".image-container {\n  width: 30%;\n  max-width: 500px;\n  float: left;\n}\n.image-container img {\n  max-width: 100%;\n}\n.product-info {\n  width: 70%;\n  float: right;\n}\n.product-info h1 {\n  font-size: large;\n  font-weight: bold;\n}\n.related-products, .clear {\n  clear: both;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9sYXVyYXR1Y2tlci9EZXZlbG9wbWVudC9tYWtldXAtbW9zYWljL21ha2V1cC1tb3NhaWMvc3JjL2FwcC9wcm9kdWN0LWRldGFpbC9wcm9kdWN0LWRldGFpbC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcHJvZHVjdC1kZXRhaWwvcHJvZHVjdC1kZXRhaWwuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRyxXQUFBO0VBQ0EsaUJBQUE7RUFDQSxZQUFBO0NDQUY7QURDRTtFQUNHLGdCQUFBO0NDQ0w7QURHRDtFQUNHLFdBQUE7RUFDQSxhQUFBO0NDQUY7QURFRTtFQUNHLGlCQUFBO0VBQ0Esa0JBQUE7Q0NBTDtBRElEO0VBQ0csWUFBQTtDQ0RGIiwiZmlsZSI6InNyYy9hcHAvcHJvZHVjdC1kZXRhaWwvcHJvZHVjdC1kZXRhaWwuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbi5pbWFnZS1jb250YWluZXIge1xuICAgd2lkdGg6IDMwJTtcbiAgIG1heC13aWR0aDogNTAwcHg7XG4gICBmbG9hdDogbGVmdDtcbiAgIGltZyB7XG4gICAgICBtYXgtd2lkdGg6IDEwMCU7XG4gICB9XG59XG5cbi5wcm9kdWN0LWluZm8ge1xuICAgd2lkdGg6IDcwJTtcbiAgIGZsb2F0OiByaWdodDtcblxuICAgaDEge1xuICAgICAgZm9udC1zaXplOiBsYXJnZTtcbiAgICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgfVxufVxuXG4ucmVsYXRlZC1wcm9kdWN0cywgLmNsZWFyIHtcbiAgIGNsZWFyOiBib3RoO1xufSIsIi5pbWFnZS1jb250YWluZXIge1xuICB3aWR0aDogMzAlO1xuICBtYXgtd2lkdGg6IDUwMHB4O1xuICBmbG9hdDogbGVmdDtcbn1cbi5pbWFnZS1jb250YWluZXIgaW1nIHtcbiAgbWF4LXdpZHRoOiAxMDAlO1xufVxuXG4ucHJvZHVjdC1pbmZvIHtcbiAgd2lkdGg6IDcwJTtcbiAgZmxvYXQ6IHJpZ2h0O1xufVxuLnByb2R1Y3QtaW5mbyBoMSB7XG4gIGZvbnQtc2l6ZTogbGFyZ2U7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuXG4ucmVsYXRlZC1wcm9kdWN0cywgLmNsZWFyIHtcbiAgY2xlYXI6IGJvdGg7XG59Il19 */"
 
 /***/ }),
 
@@ -1836,8 +1865,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/esm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/esm5/router.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_services/user.service */ "./src/app/_services/user.service.ts");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_services/user.service */ "./src/app/_services/user.service.ts");
+/* harmony import */ var _services_product_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_services/product.service */ "./src/app/_services/product.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1853,17 +1882,24 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var ProductDetailComponent = (function () {
-    function ProductDetailComponent(router, route, http, userService) {
+    function ProductDetailComponent(router, route, http, userService, productService) {
         this.router = router;
         this.route = route;
         this.http = http;
         this.userService = userService;
+        this.productService = productService;
     }
     ProductDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl + '/product/' + this.route.snapshot.params['id']).subscribe(function (data) {
-            _this.products = data;
-            _this.productId = _this.products[0].name;
+        this.productService.getProductById(this.route.snapshot.params['id']).subscribe(function (data) {
+            _this.product = data;
+            _this.productId = _this.product._id;
+            _this.productService.getProductsByBrand(_this.product.brand).subscribe(function (data) {
+                _this.relatedProducts = data;
+            });
+            _this.productService.getProductsByCategory(_this.product.sub_category).subscribe(function (data) {
+                _this.relatedProductsCategory = data;
+            });
         });
     };
     ProductDetailComponent.prototype.deleteProduct = function (id) {
@@ -1885,7 +1921,11 @@ var ProductDetailComponent = (function () {
             styles: [__webpack_require__(/*! ./product-detail.component.scss */ "./src/app/product-detail/product-detail.component.scss")],
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"],
+            _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"],
+            _services_product_service__WEBPACK_IMPORTED_MODULE_4__["ProductService"]])
     ], ProductDetailComponent);
     return ProductDetailComponent;
 }());
@@ -2067,7 +2107,7 @@ var ProductComponent = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n   <h1>Product List for {{brandTitle}}\n      <a [routerLink]=\"['/products/add']\" class=\"btn btn-default btn-lg\">\n         <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n      </a>\n   </h1>\n\n   <div *ngFor=\"let product of products\" class=\"image-mosaic\">\n      <a [routerLink]=\"['/product/', product._id]\">\n         <div *ngFor=\"let image of product.images\" class=\"{{product.sub_category | formatCategory | lowercase}} {{product.category | formatCategory | lowercase}}\">\n            <img src=\"{{image.url}}\" />\n         </div>\n      </a>\n      <br />\n      <div class=\"description\">\n         <a [routerLink]=\"['/brand/', product.brand]\">\n            <strong>{{product.brand | uppercase}}</strong><br />\n         </a>\n         <a [routerLink]=\"['/product/', product._id]\">\n            <span>{{product.name | titlecase}}</span>\n         </a>\n      </div>\n   </div>\n</div>"
+module.exports = "<div class=\"container\">\n   <h1>Product List for {{brandTitle}}\n      <a [routerLink]=\"['/products/add']\" class=\"btn btn-default btn-lg\">\n         <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n      </a>\n   </h1>\n\n   <app-product-cards [products]=\"products\"></app-product-cards>\n</div>"
 
 /***/ }),
 
@@ -2217,6 +2257,69 @@ var RegisterComponent = (function () {
 
 /***/ }),
 
+/***/ "./src/app/sidebar/sidebar.component.html":
+/*!************************************************!*\
+  !*** ./src/app/sidebar/sidebar.component.html ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"sidebar\"><ul>\n      <li>\n         <a [routerLink]=\"['/']\">Home</a>\n      </li>\n      <li>\n         <a [routerLink]=\"['/brands']\">Brands</a>\n      </li>\n      <li>\n         <a [routerLink]=\"['/featured-products']\">Featured Products</a>\n      </li>\n      \n      <li>\n         <a [routerLink]=\"['/stash']\">My Collection</a>\n      </li>\n   </ul>\n   \n</div>   "
+
+/***/ }),
+
+/***/ "./src/app/sidebar/sidebar.component.scss":
+/*!************************************************!*\
+  !*** ./src/app/sidebar/sidebar.component.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".sidebar {\n  border-radius: 4px;\n  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);\n  min-width: 200px;\n  margin-right: 10px;\n}\n.sidebar ul li {\n  list-style: none;\n  padding: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9sYXVyYXR1Y2tlci9EZXZlbG9wbWVudC9tYWtldXAtbW9zYWljL21ha2V1cC1tb3NhaWMvc3JjL2FwcC9zaWRlYmFyL3NpZGViYXIuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3NpZGViYXIvc2lkZWJhci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNHLG1CQUFBO0VBQ0EsNkNBQUE7RUFDQSxpQkFBQTtFQUNBLG1CQUFBO0NDQ0Y7QURDRTtFQUNHLGlCQUFBO0VBQ0EsYUFBQTtDQ0NMIiwiZmlsZSI6InNyYy9hcHAvc2lkZWJhci9zaWRlYmFyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnNpZGViYXIge1xuICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgYm94LXNoYWRvdzogNHB4IDRweCA4cHggMCByZ2JhKDAsMCwwLDAuMik7XG4gICBtaW4td2lkdGg6IDIwMHB4O1xuICAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xuXG4gICB1bCBsaSB7XG4gICAgICBsaXN0LXN0eWxlOiBub25lO1xuICAgICAgcGFkZGluZzogNXB4O1xuXG4gICAgICBhIHtcbiAgICAgIH1cbiAgIH1cbn1cblxuIiwiLnNpZGViYXIge1xuICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIGJveC1zaGFkb3c6IDRweCA0cHggOHB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpO1xuICBtaW4td2lkdGg6IDIwMHB4O1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG59XG4uc2lkZWJhciB1bCBsaSB7XG4gIGxpc3Qtc3R5bGU6IG5vbmU7XG4gIHBhZGRpbmc6IDVweDtcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/sidebar/sidebar.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/sidebar/sidebar.component.ts ***!
+  \**********************************************/
+/*! exports provided: SidebarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SidebarComponent", function() { return SidebarComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var SidebarComponent = (function () {
+    function SidebarComponent() {
+    }
+    SidebarComponent.prototype.ngOnInit = function () {
+    };
+    SidebarComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-sidebar',
+            template: __webpack_require__(/*! ./sidebar.component.html */ "./src/app/sidebar/sidebar.component.html"),
+            styles: [__webpack_require__(/*! ./sidebar.component.scss */ "./src/app/sidebar/sidebar.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], SidebarComponent);
+    return SidebarComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/stash/stash.component.html":
 /*!********************************************!*\
   !*** ./src/app/stash/stash.component.html ***!
@@ -2224,7 +2327,7 @@ var RegisterComponent = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n   <h1>My Stash\n   </h1>\n\n   <div *ngFor=\"let product of products\" class=\"image-mosaic\">\n      <a [routerLink]=\"['/product/', product._id]\">\n         <div *ngFor=\"let image of product.images\" class=\"{{product.sub_category | formatCategory | lowercase}} {{product.category | formatCategory | lowercase}}\">\n            <img src=\"{{image.url}}\" />\n         </div>\n      </a>\n      <br />\n      <div class=\"description\">\n         <a [routerLink]=\"['/brand/', product.brand]\">\n            <strong>{{product.brand | uppercase}}</strong><br />\n         </a>\n         <a [routerLink]=\"['/product/', product._id]\">\n            <span>{{product.name | titlecase}}</span>\n         </a>\n      </div>\n   </div>\n</div>"
+module.exports = "<div class=\"container\">\n   <h1>My Stash\n   </h1>\n\n   <app-product-cards [products]=\"products\"></app-product-cards>\n</div>"
 
 /***/ }),
 
